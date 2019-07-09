@@ -4,15 +4,16 @@
 
   1. [overview](#overview)
   1. [how xson files work](#how-xson-files-work)
-    - [headers](#headers)
-    - [pattern data](#pattern-data)
-  1. [files](#files)
+     - [headers](#headers)
+     - [pattern data](#pattern-data)
+  1. [filesystem](#filesystem)
+  1. [usage](#usage)
 
 ***
 
 ### overview
 
-this is a beatmania/sdvx/pop'n music-inspired browser game written in javascript, html, and css! I'm doing this to basically improve my programming skills and for fun. the filetype used by the game is based on the .bms spec written by urao yane and the .bmson spec written by thai pangsakulyanont.
+this is a beatmania/sdvx/pop'n music-inspired browser game written in javascript, html, and css! the filetype used by the game is based on the .bms spec written by urao yane and the .bmson spec written by thai pangsakulyanont.
 
 *wip!*
 
@@ -32,7 +33,7 @@ the way pattern data is written makes it easier to map songs without use of a vi
 
 ##### headers
 
-contains general information about the song. title, artist, bpm, , and x must not be null.
+contains general information about the song. title, artist, bpm, level, and rank must not be null.
 
 example headers:
 
@@ -45,8 +46,11 @@ example headers:
     "level": 0,
     "rank": 0,
     "hitsounds": {
-
-    }
+      1: "hitsound01.wav",
+      2: "hitsound02.wav",
+      3: "hitsound03.wav"
+    },
+    "bga": "bg1.webm"
 },
 ```
 
@@ -63,6 +67,7 @@ example pattern data for a 5-key map:
     [0, 0, 1, 0, 2],
     [1, 0, 0, 0, 0],
     [0, 1, 1, 0, 0],
+    ...
   ],...
 ]
 ```
@@ -76,12 +81,54 @@ after the numbers, there is the option to place a final index in the array conta
 ```
 this will assign hitsound 1 to the note in columns 1 and 5, and hitsound 2 will be applied to the note in the third column.
 
+the way the notes are laid out in the array makes it much easier to visualize the completed chart.
+
 #### example xson file (working title)
 
 ```javascript
 {
-    "headers": {},
-    "pattern": []
+  "headers": {
+      "genere": "GARAGE",
+      "title": "Cranberry City",
+      "artist": "lapix",
+      "bpm": 138,
+      "level": 0,
+      "rank": 0,
+      "hitsounds": {
+        1: "hitsound01.wav",
+        2: "hitsound02.wav",
+        3: "hitsound03.wav"
+      },
+      "bga": "bga.webm"
+  },
+  "pattern": [
+    [
+      [0, 1, 0, 1, 0, {"wav": [0, 1, 0, 1, 0]}],
+      [0, 0, 1, 0, 2],
+      [1, 0, 0, 0, 0],
+      [0, 1, 1, 0, 0],
+      [0, 1, 0, 1, 0, {"wav": [0, 1, 0, 1, 0]}]
+    ],
+    [
+      [0, 4, 0, 1, 0, {"wav": [0, 2, 0, 1, 0]}],
+      [0, 0, 1, 0, 1],
+      [1, 0, 0, 1, 0, {"wav": [1, 0, 0, 0, 0]}],
+      [0, 0, 1, 0, 1],
+      [1, 0, 0, 1, 0, {"wav": [1, 0, 0, 0, 0]}]
+    ],
+    [
+      [0, 0, 0, 0, 5]
+      [1, 1, 0, 0, 0]
+      [0, 0, 1, 1, 0]
+      [1, 1, 0, 0, 0]
+      [0, 0, 1, 1, 0]
+      [1, 1, 0, 0, 0]
+      [0, 0, 1, 1, 0]
+    ],
+    [
+      ...
+    ]
+  ]
 }
 ```
 
@@ -124,6 +171,56 @@ in this example, the first 2 notes in measure 1 will both be assigned a hitsound
 
 ***
 
-### files
+### filesystem
+
+#### directory structure
+
+```
+(root directory)
++-- assets
++-- css
+    +-- main.min.css
+    +-- anim.min.css
++-- js
+    +-- audioplayer.js
+    +-- chartreader.js
+    +-- effects.js
+    +-- main.js
+    +-- player.js
+    +-- statemanager.js
+    +-- utils.js
++-- skins
+    +-- default.json
++-- songs
+    +-- meikai zodiac - alrescha
+        +-- song.mp3
+        +-- hitsound01.wav
+        +-- hitsound02.wav
+        +-- hitsound03.wav
+        +-- bga.webm
+        +-- pattern_normal.json
+        +-- pattern_hyper.json
+        +-- pattern_ex.json
++-- index.html
+```
 
 *wip!*
+
+***
+
+### usage
+
+*wip!*
+
+***
+
+current todo list:
+- [ ] finalize pattern file spec
+- [ ] finish pattern file parser
+- [ ] finalize directory structure
+- [ ] choose fonts/colors
+- [ ] create loading screen
+- [ ] create initial ui
+future:
+- [ ] create player database in order to allow worldwide player competition
+- [ ] create some sort of visual pattern editor
