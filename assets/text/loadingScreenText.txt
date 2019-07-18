@@ -1,0 +1,72 @@
+loading world benders
+loading light_reactive_specialist.ext
+initialising monophonic frequency handler
+initialising hyperdrive spell handler
+initialising spellbook casting protocol
+initialising starfield
+reading hitsounds
+focusing starmaps
+focusing prisma arrays
+focusing console magica gems
+loading musica_universalis.ext
+loading trigram bagua fragments
+reading CONTENT/grimoire.mjo
+reading CONTENT/spellbook.mjo
+reading CONTENT/spelldriver.mjo
+reading CONTENT/starmaps.lib
+concata CONTENT/spelldriver.mjo \x CONTENT/spelldriver_extra.mjo.lib => spelldrive_comp.lib
+reading CONTENT/soundweaver.mjo
+extracting CONTENT/spelldriver_comp.lib => ARCANA/SPELLDRIVER/init.mjo
+initialising ARCANA/mahou.ini
+initialising ARCANA/hyper.mjo
+initialising ARCANA/majora.mjo
+initialising ARCANA/starmaps.lib
+initialising ARCANA/ARCANA.sp
+reading ARCANA/solomon.gri
+reading ARCANA/dragon.gri
+reading ARCANA/voynich.gri
+reading ARCANA/heptameron.gri
+reading ARCANA/tangmi.gri
+reading ARCANA/kujikiri.gri
+reading ARCANA/harmonices_mundi.gri
+reading ARCANA/ARCANA.ini
+tuning strings
+load concata CONTENT/grimoire.mjo \x\v ARCANA/hyper.mjo || ARCANA/majora.mjo => driver_special.lib
+load SPELL/course.sp
+load SPELL/mapping.sp
+load SPELL/upgrade.sp
+load SPELL/repair.sp
+load SPELL/interface.sp
+load SPELL/navigator.sp
+load SPELL/starmap_known.sp
+load HEARTCORE.mjo
+listening to the music of the spheres
+ERROR loading light-reactive-specialist.ext...repairing
+tuning planetary harmonics
+ERROR initialising monophonic frequency handler...repairing
+ERROR initialising hyperdrive spell handler...repairing
+ERROR initialising spellbook casting protocol...repairing
+ERROR loading trigram bagua fragments...repairing
+ERROR reading CONTENT/grimoire.mjo...repairing
+ERROR reading CONTENT/spellbook.mjo...repairing
+ERROR reading CONTENT/spelldriver.mjo...repairing
+ERROR initialising ARCANA/hyper.mjo...repairing
+ERROR initialising ARCANA/majora.mjo...repairing
+ERROR initialising ARCANA/starmaps.lib...repairing
+ERROR reading ARCANA/voynich.gri...repairing
+ERROR reading ARCANA/heptameron.gri...repairing
+ERROR reading ARCANA/tangmi.gri...repairing
+load ARCANA/musique_arcana.sp
+
+initialising compiler.sp
+reading contents of CONTENT/
+reading contents of ARCANA/
+reading contents of SPELL/
+initialising light-reactive-core.sp
+initialising ARCANA/ARCANA.sp
+initialising SPELL/SPELL.sp
+initialising CONTENT/CONTENT.sp
+running compiler tasks...
+running compiler tasks...
+editing ARCANA/*.lib...
+editing ARCANA/*.lib...

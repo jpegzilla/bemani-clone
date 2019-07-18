@@ -33,7 +33,7 @@ the way pattern data is written makes it easier to map songs without use of a vi
 
 ##### headers
 
-contains general information about the song. title, artist, bpm, level, and rank must not be null.
+contains general information about the song. title, artist, bpm, level, keys, and rank must not be null.
 
 example headers:
 
@@ -43,6 +43,7 @@ example headers:
     "title": "CHOCOLATE PHILOSOPHY",
     "artist": "yu tokiwa",
     "bpm": 110,
+    "keys": 5,
     "level": 0,
     "rank": 0,
     "hitsounds": {
@@ -92,6 +93,7 @@ the way the notes are laid out in the array makes it much easier to visualize th
       "title": "Cranberry City",
       "artist": "lapix",
       "bpm": 138,
+      "keys": 5,
       "level": 0,
       "rank": 0,
       "hitsounds": {
@@ -152,7 +154,7 @@ example:
     "hitsounds": {
       1: "kick.wav",
       2: "snare.wav",
-      3. "clap01.wav",
+      3: "clap01.wav",
       ...
     }
   }
@@ -178,9 +180,14 @@ in this example, the first 2 notes in measure 1 will both be assigned a hitsound
 ```
 (root directory)
 +-- assets
+    +-- audio
+    +-- image
+    +-- fonts
+    +-- text
 +-- css
     +-- main.min.css
     +-- anim.min.css
+    +-- stars.min.css
 +-- js
     +-- audioplayer.js
     +-- chartreader.js
@@ -189,6 +196,8 @@ in this example, the first 2 notes in measure 1 will both be assigned a hitsound
     +-- player.js
     +-- statemanager.js
     +-- utils.js
++-- server
+    +-- api
 +-- skins
     +-- default.json
 +-- songs

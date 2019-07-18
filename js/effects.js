@@ -1,12 +1,14 @@
-// contains: interfaces for creating visual effects and audio effects.
+// // // contains: interfaces for creating visual effects and audio effects.
 
-// visual effects
+// // visual effects
 
-// audio effects
+// // audio effects
 
-// main menu/ui audio effects
+// // main menu/ui audio effects
 
 document.addEventListener("click", e => {});
 document.addEventListener("keydown", e => {
   // manage sounds for up/down/left/right arrow keys and typing
 });
+
+// main menu audio visualization effect

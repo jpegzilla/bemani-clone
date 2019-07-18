@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="./css/main.min.css">
+  <link rel="stylesheet" href="./css/stars.min.css">
+  <link rel="stylesheet" href="./css/anim.min.css">
   <title>bemani-clone</title>
 </head>
 
@@ -15,19 +17,44 @@
   <main id="main">
     <!-- main contains all layers for every screen. -->
 
-    <!-- section 1 contains the start menu -->
-    <section id="start-menu" class="start-menu"></section>
+    <!-- section 1 contains the modals -->
+    <section id="modals" class="modals"></section>
 
-    <!-- section 2 contains the application settings -->
+    <!-- section 2 contains the start menu -->
+    <section id="start-menu" class="start-menu">
+      <div class="menu-container"></div>
+
+      <!-- stars -->
+      <div class="stars-container">
+        <div class="starfield">
+          <div class="stars small"></div>
+          <div class="stars medium"></div>
+          <div class="stars large"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- section 3 contains the application settings -->
     <section id="settings-menu" class="settings-menu"></section>
 
-    <!-- section 3 contains the song selection screen -->
+    <!-- section 4 contains the options selection screen -->
+    <section id="options-select" class="options-select"></section>
+
+    <!-- section 5 contains the song selection screen -->
     <section id="song-select" class="song-select"></section>
+
+    <!-- section 6 contains the play area -->
+    <section id="play-area" class="play-area"></section>
 
   </main>
 </body>
 <!-- utilities -->
 <script src="./js/utils.js" charset="utf-8"></script>
+<script src="./js/statemanager.js" charset="utf-8"></script>
+<script src="./js/effects.js" charset="utf-8" defer></script>
+<script src="./js/audioplayer.js" charset="utf-8"></script>
+<script src="./js/player.js" charset="utf-8"></script>
+<script src="./js/chartreader.js" charset="utf-8"></script>
 <!-- main javascript -->
 <script src="./js/main.js" charset="utf-8"></script>
 

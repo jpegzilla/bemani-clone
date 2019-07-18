@@ -1,0 +1,85 @@
+// fonts
+
+// // monospace fonts for technical-looking (lol) ui elements
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:500%7CRoboto:300,400");
+@font-face {
+  font-family: "proggy";
+  src: url("./../assets/fonts/proggy.ttf");
+}
+
+$proggy: "proggy", monospace;
+$roboto-mono: "Roboto Mono", monospace;
+
+// colors
+
+$black: #010101;
+$white: #f9f9f9;
+
+// breakpoints
+
+$large: 1700px;
+$midLarge: 1450px;
+$medium: 1200px;
+$small: 900px;
+
+:root {
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// // misc elements
+
+// // main elements
+
+main {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+
+  section {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+
+    &#start-menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .stars-container {
+        z-index: 0;
+        user-select: none;
+        pointer-events: none;
+        margin: 0 auto;
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        align-items: center;
+        .starfield {
+          animation: spin 960s infinite linear;
+          position: absolute;
+          height: 300%;
+          width: 200%;
+          transform-origin: center;
+          opacity: 1;
+          transition: 0.5s;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
