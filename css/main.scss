@@ -7,6 +7,15 @@
   src: url("./../assets/fonts/proggy.ttf");
 }
 
+// css screen modules
+
+@import "./component/options.min.css";
+@import "./component/play-area.min.css";
+@import "./component/settings.min.css";
+@import "./component/song-select.min.css";
+@import "./component/stars.min.css";
+@import "./component/anim.min.css";
+
 $proggy: "proggy", monospace;
 $roboto-mono: "Roboto Mono", monospace;
 

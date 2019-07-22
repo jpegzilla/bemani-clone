@@ -33,12 +33,11 @@ window.onload = () => {
 
       const starfield = document.querySelector(".stars-container");
 
-      const moveStarfield = () =>
-        (starfield.style.cssText = `transform: translate(-${left /
-          140}px, -${top / 100}px);`);
-
-      window.requestAnimationFrame(moveStarfield);
-      // cursor.style.cssText = `left:${left - 20}px;top:${top - 20}px;`;
+      // const moveStarfield = () =>
+      //   (starfield.style.cssText = `transform: translate(-${left /
+      //     140}px, -${top / 100}px);`);
+      //
+      // window.requestAnimationFrame(moveStarfield);
     });
   });
 };

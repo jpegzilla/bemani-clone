@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:500%7CRoboto:300,400");
+@import url(./component/options.min.css);
+@import url(./component/play-area.min.css);
+@import url(./component/settings.min.css);
+@import url(./component/song-select.min.css);
+@import url(./component/stars.min.css);
+@import url(./component/anim.min.css);
 @font-face {
   font-family: "proggy";
   src: url("./../assets/fonts/proggy.ttf");
