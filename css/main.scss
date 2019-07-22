@@ -14,11 +14,12 @@ $roboto-mono: "Roboto Mono", monospace;
 
 $black: #010101;
 $white: #f9f9f9;
+$beige: #c5bfab;
 
 // breakpoints
 
 $large: 1700px;
-$midLarge: 1450px;
+$midLarge: 1300px;
 $medium: 1200px;
 $small: 900px;
 
@@ -35,51 +36,158 @@ $small: 900px;
 // // misc elements
 
 // // main elements
-
-main {
-  height: 100vh;
-  width: 100vw;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: black;
-
-  section {
-    height: 100%;
-    width: 100%;
+body {
+  .mobile-warning {
+    height: 100vh;
+    width: 100vw;
     position: absolute;
-    overflow: hidden;
+    z-index: 9999999999999999999;
+    background-color: $black;
+    color: $white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    user-select: none;
+    font-family: $roboto-mono;
+  }
 
-    &#start-menu {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  cursor: url(../assets/image/cursor.png), auto;
+  isolation: isolate;
+  #preloader-container {
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      .stars-container {
-        z-index: 0;
-        user-select: none;
-        pointer-events: none;
-        margin: 0 auto;
-        height: 100vh;
-        width: 100vw;
+    .preloader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      #preloader-text-container {
         position: absolute;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        align-items: center;
-        .starfield {
-          animation: spin 960s infinite linear;
-          position: absolute;
-          height: 300%;
-          width: 200%;
-          transform-origin: center;
-          opacity: 1;
-          transition: 0.5s;
-          overflow: hidden;
+        height: auto;
+        width: auto;
+        bottom: 2rem;
+        right: 4rem;
+        * + * {
+          margin-top: 0.5rem;
+        }
+        .preloader-text {
+          text-align: right;
+          font-size: 1rem;
+          color: transparentize($black, 0.5);
+          font-family: $roboto-mono;
+          position: relative;
+          bottom: 0;
+          right: 0;
         }
       }
+
+      .preloader-lr {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        div {
+          height: 100%;
+          width: auto;
+          flex-grow: 1;
+          background: $beige;
+          transition: transform 0.3s ease-in-out;
+          &.preloader-bars-moved {
+            transition: transform 0.3s ease-in-out;
+            &:nth-child(1) {
+              transform: translateX(-100%);
+            }
+            &:nth-child(2) {
+              transform: translateX(100%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // // main
+
+  main {
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    isolation: isolate;
+
+    section {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      overflow: hidden;
+
+      &#start-menu {
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        isolation: isolate;
+        .stars-container {
+          opacity: 1;
+          z-index: 0;
+          user-select: none;
+          pointer-events: none;
+          margin: 0 auto;
+          height: 100vh;
+          width: 100vw;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          overflow: hidden;
+          align-items: center;
+          will-change: transform;
+          .starfield {
+            will-change: transform;
+            animation: spin 960s infinite linear;
+            position: absolute;
+            height: 300%;
+            width: 200%;
+            transform-origin: center;
+            opacity: 1;
+            transition: 0.5s;
+            overflow: hidden;
+          }
+        }
+
+        &.opaque {
+          opacity: 1;
+          transition: opacity 0.3s;
+        }
+      }
+    }
+  }
+  @media (max-width: $midLarge) {
+    section,
+    main {
+      display: none;
+    }
+
+    .mobile-warning {
+      display: flex;
     }
   }
 }

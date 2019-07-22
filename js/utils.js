@@ -173,7 +173,9 @@ document.addEventListener("keydown", keyDown);
 
 let audioContext = new AudioContext();
 
-// // utils for managing score
+// // utilities for managing in-game modifiers
+
+// constants for in game modifiers
 
 const BASE_SCORE = 0;
 const BASE_SCORE_MULT = 1;
@@ -193,41 +195,55 @@ let file = "./../assets/text/loadingScreenText.txt";
 let linecount = 58;
 
 // choose random line numbers. linecount is the number of lines in the text file
+const runLoadingFlavorText = () => {
+  return new Promise((resolve, reject) => {
+    const randLine1 = () => {
+      let rt = Math.round(Math.random() * 1000);
+      let interval = setInterval(() => {
+        if (time <= linecount) {
+          (function loop() {
+            let rand = Math.round(Math.random() * 1000);
+            setTimeout(() => {
+              return addLoadingState();
+            }, rand);
+          })();
+          time++;
+        } else {
+          clearInterval(interval);
+          resolve("done");
+        }
+      }, rt);
+    };
 
-const randLine1 = () => {
-  let rt = Math.round(Math.random() * 2000);
-  let interval = setInterval(() => {
-    if (time <= linecount) {
-      (function loop() {
-        let rand = Math.round(Math.random() * 2000);
-        setTimeout(() => {
-          addLoadingState();
-        }, rand);
-      })();
-      time++;
-    } else {
-      clearInterval(interval);
-    }
-  }, rt);
+    const randLine2 = () => {
+      let randTime = Math.round(Math.random() * 1000);
+      let interval = setInterval(() => {
+        if (time <= 26) {
+          (function loop() {
+            let rand = Math.round(Math.random() * 1000);
+            setTimeout(() => {
+              return addLoadingState();
+            }, rand);
+          })();
+          time++;
+        } else {
+          clearInterval(interval);
+        }
+      }, randTime);
+    };
+
+    // if (time < linecount) {
+    //   randLine1();
+    //   randLine2();
+    // }
+    // just instantly resolve, for development purposes
+    resolve();
+  });
 };
 
-const randLine2 = () => {
-  let randTime = Math.round(Math.random() * 2000);
-  let interval = setInterval(() => {
-    if (time <= 26) {
-      (function loop() {
-        let rand = Math.round(Math.random() * 2000);
-        setTimeout(() => {
-          addLoadingState();
-        }, rand);
-      })();
-      time++;
-    } else {
-      clearInterval(interval);
-    }
-  }, randTime);
-};
-
+let prevLine1, prevLine2;
+const loadingTextTop = document.querySelector(".preloader-text-top");
+const loadingTextBottom = document.querySelector(".preloader-text-bottom");
 // add a line of text to the loading text area.
 const addLoadingState = () => {
   fetch(file)
@@ -237,10 +253,41 @@ const addLoadingState = () => {
       let r2 = randomInt(60, 71);
       let line1 = x.split("\n")[r1];
       let line2 = x.split("\n")[r2];
+
+      if (prevLine1 != line1) {
+        loadingTextTop.textContent = line1;
+      }
+
+      if (prevLine2 != line2) {
+        loadingTextBottom.textContent = line2;
+      }
+
+      prevLine1 = line1;
+      prevLine2 = line2;
     });
 };
 
-const runLoadingFlavorText = () => {
-  randLine1();
-  randLine2();
+// convert text into an array of inline-block <span> elements (for more convenience in letter-
+// by-letter text animation)
+const toSpans = (text, element) => {
+  let a = [];
+  let letters = text.split("");
+  for (let i = 0; i < letters.length; i++) {
+    let span = document.createElement("span");
+    // they need to display as 'inline-block' so they can be animated.
+    span.style.display = "inline-block";
+    if (/\s/.test(letters[i])) {
+      span.innerHTML = "&nbsp;";
+      element.appendChild(span);
+      a.push(span);
+    } else {
+      span.style.cssText = `transition: translate 0.3s, opacity 0.3s;transition-delay: ${i *
+        80}ms`;
+      let cont = document.createTextNode(letters[i]);
+      span.appendChild(cont);
+      element.appendChild(span);
+      a.push(span);
+    }
+  }
+  return a;
 };

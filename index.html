@@ -10,8 +10,26 @@
 </head>
 
 <body>
-  <section id="preloader">
-    <div class="preloader-container"></div>
+  <noscript>
+    this site contains a rhythm game. it cannot be played with javascript disabled.
+  </noscript>
+
+  <div class="mobile-warning">
+    this game is optimized for screens above 1300px in width.
+  </div>
+
+  <section id="preloader-container">
+    <div class="preloader">
+      <div id="preloader-text-container">
+        <div class="preloader-text preloader-text-top"></div>
+        <div class="preloader-text preloader-text-bottom"></div>
+      </div>
+
+      <div class="preloader-lr">
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
+      </div>
+    </div>
   </section>
 
   <main id="main">
@@ -21,7 +39,7 @@
     <section id="modals" class="modals"></section>
 
     <!-- section 2 contains the start menu -->
-    <section id="start-menu" class="start-menu">
+    <section id="start-menu" class="invisible start-menu">
       <div class="menu-container"></div>
 
       <!-- stars -->

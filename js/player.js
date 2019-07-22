@@ -29,7 +29,11 @@ let currentPlayers = {};
 
 const storage = window.localStorage ? window.localStorage : null;
 let localPlayers = storage.getItem("players") || "no player found";
-let currentPlayer = storage.getItem("players").current || "no player found";
+if (typeof localPlayers == "object") {
+  let currentPlayer = storage.getItem("players").current
+    ? storage.getItem("players").current
+    : "no player found";
+}
 
 if (localPlayers != null) {
   console.log(localPlayers);
