@@ -17,7 +17,7 @@ reading CONTENT/starmaps.lib
 concata CONTENT/spelldriver.mjo \x CONTENT/spelldriver_extra.mjo.lib => spelldrive_comp.lib
 reading CONTENT/soundweaver.mjo
 extracting CONTENT/spelldriver_comp.lib => ARCANA/SPELLDRIVER/init.mjo
-initialising ARCANA/mahou.ini
+initialising ARCANA/maho.ini
 initialising ARCANA/hyper.mjo
 initialising ARCANA/majora.mjo
 initialising ARCANA/starmaps.lib

@@ -12,11 +12,6 @@ window.onload = () => {
     const mainElement = document.getElementById("main");
     // remove loading screen:
     setTimeout(() => {
-      const preloaderBars = Array.from(
-        document.querySelectorAll(".preloader-bar")
-      );
-      preloaderBars.forEach(a => a.classList.add("preloader-bars-moved"));
-
       document.getElementById("start-menu").classList.add("opaque");
       setTimeout(() => {
         document.getElementById("preloader-container").remove();

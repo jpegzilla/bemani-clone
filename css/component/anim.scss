@@ -1,3 +1,5 @@
+@import "./vars";
+
 @keyframes flicker {
   from {
     opacity: 1;
@@ -173,5 +175,50 @@
   to {
     opacity: 0;
     display: none;
+  }
+}
+
+@keyframes loadingSpinner {
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  40% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  60% {
+    transform: rotateZ(375deg);
+  }
+
+  80% {
+    transform: rotateZ(360deg);
+  }
+
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes loadingSpinnerAlt {
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  30% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotateZ(360deg);
+  }
+
+  to {
+    transform: rotateZ(360deg);
   }
 }

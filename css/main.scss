@@ -1,36 +1,14 @@
-// fonts
-
-// // monospace fonts for technical-looking (lol) ui elements
-@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:500%7CRoboto:300,400");
-@font-face {
-  font-family: "proggy";
-  src: url("./../assets/fonts/proggy.ttf");
-}
-
 // css screen modules
 
-@import "./component/options.min.css";
-@import "./component/play-area.min.css";
-@import "./component/settings.min.css";
-@import "./component/song-select.min.css";
-@import "./component/stars.min.css";
-@import "./component/anim.min.css";
-
-$proggy: "proggy", monospace;
-$roboto-mono: "Roboto Mono", monospace;
-
-// colors
-
-$black: #010101;
-$white: #f9f9f9;
-$beige: #c5bfab;
-
-// breakpoints
-
-$large: 1700px;
-$midLarge: 1300px;
-$medium: 1200px;
-$small: 900px;
+@import "component/vars";
+@import "component/options";
+@import "component/play-area";
+@import "component/settings";
+@import "component/song-select";
+@import "component/stars";
+@import "component/anim";
+@import "component/loading-icon";
+@import "component/fonts";
 
 :root {
   font-size: 16px;
@@ -81,48 +59,19 @@ body {
       z-index: 2;
       width: 100%;
       height: 100%;
-      #preloader-text-container {
-        position: absolute;
-        height: auto;
-        width: auto;
-        bottom: 2rem;
-        right: 4rem;
-        * + * {
-          margin-top: 0.5rem;
-        }
-        .preloader-text {
-          text-align: right;
-          font-size: 1rem;
-          color: transparentize($black, 0.5);
-          font-family: $roboto-mono;
-          position: relative;
-          bottom: 0;
-          right: 0;
-        }
+      background-color: black;
+      padding: 2rem 0 0 3rem;
+      font-family: $roboto-mono;
+      color: $white;
+      * + * {
+        margin-top: 0.25rem;
+      }
+      .preloader-bar {
+        height: 1.5rem;
       }
 
-      .preloader-lr {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        div {
-          height: 100%;
-          width: auto;
-          flex-grow: 1;
-          background: $beige;
-          transition: transform 0.3s ease-in-out;
-          &.preloader-bars-moved {
-            transition: transform 0.3s ease-in-out;
-            &:nth-child(1) {
-              transform: translateX(-100%);
-            }
-            &:nth-child(2) {
-              transform: translateX(100%);
-            }
-          }
-        }
+      #loading-icon-standard {
+        margin-top: 1rem;
       }
     }
   }
@@ -155,6 +104,53 @@ body {
         justify-content: center;
         align-items: center;
         isolation: isolate;
+        // actual menu
+        .menu-container {
+          height: 100%;
+          width: 100%;
+          z-index: 10;
+
+          display: flex;
+          flex-direction: column;
+
+          // actual stuff like the start button and title
+          .menu-center {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+            width: 100%;
+
+            .main-title {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: auto;
+              width: 100%;
+              color: $white;
+              font-size: 3em;
+              font-family: $forum;
+            }
+
+            .main-menu-buttons {
+              display: flex;
+            }
+          }
+
+          // sub-menu buttons like links to my twitter, the github, some other stuff, etc
+          .option-buttons {
+            align-items: center;
+            border-top: 1px solid #fff;
+            color: #fff;
+            display: flex;
+            height: 4rem;
+            padding: 0 2rem;
+            width: 100%;
+          }
+        }
+
+        // star container
         .stars-container {
           opacity: 1;
           z-index: 0;

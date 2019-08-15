@@ -179,38 +179,47 @@ in this example, the first 2 notes in measure 1 will both be assigned a hitsound
 
 ```
 (root directory)
-+-- assets
-    +-- audio
-    +-- image
-    +-- fonts
-    +-- text
-+-- css
-    +-- main.min.css
-    +-- anim.min.css
-    +-- stars.min.css
-+-- js
-    +-- audioplayer.js
-    +-- chartreader.js
-    +-- effects.js
-    +-- main.js
-    +-- player.js
-    +-- statemanager.js
-    +-- utils.js
-+-- server
-    +-- api
-+-- skins
-    +-- default.json
-+-- songs
-    +-- meikai zodiac - alrescha
-        +-- song.mp3
-        +-- hitsound01.wav
-        +-- hitsound02.wav
-        +-- hitsound03.wav
-        +-- bga.webm
-        +-- pattern_normal.json
-        +-- pattern_hyper.json
-        +-- pattern_ex.json
-+-- index.html
+├── assets
+│   ├── audio
+│   ├── image
+│   ├── fonts
+│   └── text
+├── css
+│   └── main.min.css
+│       ├── anim.min.css
+│       ├── options.min.css
+│       ├── play-area.min.css
+│       ├── settings.min.css
+│       ├── song-select.min.css
+│       └── stars.min.css
+├── js
+│   ├── audioplayer.js
+│   ├── chartreader.js
+│   ├── effects.js
+│   ├── main.js
+│   ├── player.js
+│   ├── statemanager.js
+│   └── utils.js
+├── server
+│   ├── api
+│   │   ├── api.php
+│   │   └── index.php
+│   └── js
+│       ├── server.js
+│       └── utils.js
+├── skins
+│   └── default.json
+├── songs
+│   └── meikai zodiac - alrescha
+│       ├── song.mp3
+│       ├── hitsound01.wav
+│       ├── hitsound02.wav
+│       ├── hitsound03.wav
+│       ├── bga.webm
+│       ├── pattern_normal.json
+│       ├── pattern_hard.json
+│       └── pattern_ex.json
+└── index.html
 ```
 
 *wip!*

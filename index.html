@@ -18,15 +18,9 @@
 
   <section id="preloader-container">
     <div class="preloader">
-      <div id="preloader-text-container">
-        <div class="preloader-text preloader-text-top"></div>
-        <div class="preloader-text preloader-text-bottom"></div>
-      </div>
-
-      <div class="preloader-lr">
-        <div class="preloader-bar"></div>
-        <div class="preloader-bar"></div>
-      </div>
+      <div class="preloader-text-top preloader-bar"></div>
+      <div class="preloader-text-bottom preloader-bar"></div>
+      <div id="loading-icon-standard"></div>
     </div>
   </section>
 
@@ -38,7 +32,17 @@
 
     <!-- section 2 contains the start menu -->
     <section id="start-menu" class="invisible start-menu">
-      <div class="menu-container"></div>
+      <div class="menu-container">
+        <div class="menu-center">
+          <div class="main-title">TITLE</div>
+          <div class="main-menu-buttons">
+            <!-- menu buttons: start game, etc -->
+          </div>
+        </div>
+        <div class="option-buttons">
+          <!-- option buttons: open options, change settings, log in, etc -->
+        </div>
+      </div>
 
       <!-- stars -->
       <div class="stars-container">
@@ -75,6 +79,6 @@
 <script src="./js/main.js" charset="utf-8"></script>
 
 <!-- scripts for server operations lol -->
-<script src="./server/server.js" charset="utf-8"></script>
+<script src="./server/js/server.js" charset="utf-8"></script>
 
 </html>
