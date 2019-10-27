@@ -1,0 +1,114 @@
+@import "./vars";
+
+#start-menu {
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  isolation: isolate;
+  // actual menu
+  .menu-container {
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+
+    // actual stuff like the start button and title
+    .menu-center {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      font-size: 1rem;
+      justify-content: center;
+      user-select: none;
+      width: 100%;
+
+      .main-title {
+        align-items: center;
+        color: $white;
+        display: flex;
+        font-family: $josefin;
+        font-size: 9em;
+        font-style: italic;
+        height: auto;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .main-menu-buttons {
+        align-items: center;
+        color: $white;
+        display: flex;
+        font-family: $alegreya;
+        font-size: 2em;
+        font-style: italic;
+        justify-content: center;
+        padding: 1rem 2rem;
+        width: 100%;
+        div + div {
+          margin-left: 1em;
+        }
+      }
+    }
+
+    // sub-menu buttons like links to my twitter, the github, some other stuff, etc
+    .option-buttons {
+      align-items: center;
+      bottom: 0;
+      display: flex;
+      font-family: $roboto-mono;
+      font-language-override: $white;
+      font-size: 1em;
+      height: auto;
+      padding: 1.5rem 2rem;
+      position: absolute;
+      width: 100%;
+
+      a {
+        color: $white;
+      }
+
+      a + a {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  // star container
+  .stars-container {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    margin: 0 auto;
+    opacity: 1;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    user-select: none;
+    width: 100vw;
+    will-change: transform;
+    z-index: 0;
+    .starfield {
+      animation: spin 960s infinite linear;
+      height: 300%;
+      opacity: 1;
+      overflow: hidden;
+      position: absolute;
+      transform-origin: center;
+      transition: 0.5s;
+      width: 200%;
+      will-change: transform;
+    }
+  }
+
+  &.opaque {
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+}

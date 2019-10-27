@@ -3,6 +3,10 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="jpegzilla">
+  <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="./css/main.min.css">
   <title>bemani-clone</title>
 </head>
@@ -34,12 +38,16 @@
     <section id="start-menu" class="invisible start-menu">
       <div class="menu-container">
         <div class="menu-center">
-          <div class="main-title">TITLE</div>
+          <div class="main-title">BEMANI CLONE</div>
           <div class="main-menu-buttons">
+            <div id="start-game">begin</div>
             <!-- menu buttons: start game, etc -->
           </div>
         </div>
         <div class="option-buttons">
+          <a target="_blank" href="">github</a>
+          <a target="_blank" href="">discord</a>
+          <a target="_blank" href="">twitter</a>
           <!-- option buttons: open options, change settings, log in, etc -->
         </div>
       </div>
@@ -69,16 +77,13 @@
   </main>
 </body>
 <!-- utilities -->
-<script src="./js/utils.js" charset="utf-8"></script>
+<!-- <script src="./js/utils.js" charset="utf-8"></script>
 <script src="./js/statemanager.js" charset="utf-8"></script>
 <script src="./js/effects.js" charset="utf-8"></script>
 <script src="./js/audioplayer.js" charset="utf-8"></script>
 <script src="./js/player.js" charset="utf-8"></script>
-<script src="./js/chartreader.js" charset="utf-8"></script>
+<script src="./js/chartreader.js" charset="utf-8"></script> -->
 <!-- main javascript -->
-<script src="./js/main.js" charset="utf-8"></script>
-
-<!-- scripts for server operations lol -->
-<script src="./server/js/server.js" charset="utf-8"></script>
+<script type="module" src="./js/main.mjs" charset="utf-8"></script>
 
 </html>

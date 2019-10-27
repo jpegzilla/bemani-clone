@@ -1,14 +1,14 @@
 // css screen modules
 
 @import "component/vars";
+@import "component/anim";
 @import "component/options";
+@import "component/start-menu";
 @import "component/play-area";
 @import "component/settings";
 @import "component/song-select";
 @import "component/stars";
-@import "component/anim";
 @import "component/loading-icon";
-@import "component/fonts";
 
 :root {
   font-size: 16px;
@@ -95,94 +95,6 @@ body {
       width: 100%;
       position: absolute;
       overflow: hidden;
-
-      &#start-menu {
-        opacity: 0;
-        transition: opacity 0.3s;
-        z-index: 9;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        isolation: isolate;
-        // actual menu
-        .menu-container {
-          height: 100%;
-          width: 100%;
-          z-index: 10;
-
-          display: flex;
-          flex-direction: column;
-
-          // actual stuff like the start button and title
-          .menu-center {
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: center;
-            width: 100%;
-
-            .main-title {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: auto;
-              width: 100%;
-              color: $white;
-              font-size: 3em;
-              font-family: $forum;
-            }
-
-            .main-menu-buttons {
-              display: flex;
-            }
-          }
-
-          // sub-menu buttons like links to my twitter, the github, some other stuff, etc
-          .option-buttons {
-            align-items: center;
-            border-top: 1px solid #fff;
-            color: #fff;
-            display: flex;
-            height: 4rem;
-            padding: 0 2rem;
-            width: 100%;
-          }
-        }
-
-        // star container
-        .stars-container {
-          opacity: 1;
-          z-index: 0;
-          user-select: none;
-          pointer-events: none;
-          margin: 0 auto;
-          height: 100vh;
-          width: 100vw;
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          overflow: hidden;
-          align-items: center;
-          will-change: transform;
-          .starfield {
-            will-change: transform;
-            animation: spin 960s infinite linear;
-            position: absolute;
-            height: 300%;
-            width: 200%;
-            transform-origin: center;
-            opacity: 1;
-            transition: 0.5s;
-            overflow: hidden;
-          }
-        }
-
-        &.opaque {
-          opacity: 1;
-          transition: opacity 0.3s;
-        }
-      }
     }
   }
   @media (max-width: $midLarge) {

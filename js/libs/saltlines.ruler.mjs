@@ -159,3 +159,5 @@ window.onload = function() {
 window.addEventListener("resize", e => {
   getAllUnits();
 });
+
+export default ruler;

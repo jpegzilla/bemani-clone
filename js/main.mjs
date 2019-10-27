@@ -1,4 +1,5 @@
-var uptime;
+let uptime;
+import utils from "./utils/utils.mjs";
 uptime = new Stopwatch();
 uptime.start();
 
@@ -8,7 +9,7 @@ window.onload = () => {
   // select a random song from the songs directory to play
   // loading screen flavor text
 
-  runLoadingFlavorText().then(() => {
+  utils.runLoadingFlavorText().then(() => {
     const mainElement = document.getElementById("main");
     // remove loading screen:
     setTimeout(() => {
@@ -20,19 +21,5 @@ window.onload = () => {
     }, 500);
 
     // main menu stuff
-
-    mainElement.addEventListener("mousemove", e => {
-      // cursor.classList.remove("hidden");
-      let left = e.clientX;
-      let top = e.clientY;
-
-      const starfield = document.querySelector(".stars-container");
-
-      // const moveStarfield = () =>
-      //   (starfield.style.cssText = `transform: translate(-${left /
-      //     140}px, -${top / 100}px);`);
-      //
-      // window.requestAnimationFrame(moveStarfield);
-    });
   });
 };

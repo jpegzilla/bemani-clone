@@ -1,1 +1,3 @@
 /notmine
+*.min.js
+.tags

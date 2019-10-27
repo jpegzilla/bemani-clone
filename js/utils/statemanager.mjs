@@ -1,19 +1,19 @@
 // utility script for managing navigation and state within the game
 
 let screens = {
-  one: "start-menu",
-  two: "song-select",
-  three: "options-select",
-  four: "settings-menu",
-  five: "song-results",
-  six: "modals"
+  start: "start-menu",
+  songSelect: "song-select",
+  options: "options-select",
+  settings: "settings-menu",
+  songResults: "song-results",
+  modals: "modals"
 };
 
 // storage cache - for anything
 let store = {};
 
-let state = {
-  screen: screens.zero
+let gameState = {
+  screen: screens.start
 };
 
 // caching function for storing values of slow functions

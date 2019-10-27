@@ -1,3 +1,14 @@
+// things for storage
+
+class ItemStore {
+  constructor() {
+    this.storage = window.localStorage;
+    this.items = {};
+  }
+}
+
+const STORE = new ItemStore();
+
 // song file and pattern-related utilities
 
 const getSongData = id => {
@@ -145,47 +156,83 @@ let defaultKeyBinds = {
   }
 };
 
-let isKeyPressed = false;
-
-const getKeyCodeFromLetter = letter => letter.toUpperCase().charCodeAt(0);
-
-const keyUp = e => {
-  console.log(e);
+const utils = {
+  keymap: {
+    0: 48,
+    1: 49,
+    2: 50,
+    3: 51,
+    4: 52,
+    5: 53,
+    6: 54,
+    7: 55,
+    8: 56,
+    9: 57,
+    a: 65,
+    alt: 18,
+    b: 66,
+    c: 67,
+    caps: 20,
+    ctrl: 17,
+    d: 68,
+    down: 40,
+    e: 69,
+    enter: 13,
+    equal: 187,
+    start: 13,
+    f: 70,
+    f1: 112,
+    f10: 121,
+    f11: 122,
+    f12: 123,
+    f2: 113,
+    f3: 114,
+    f4: 115,
+    f5: 116,
+    f6: 117,
+    f7: 118,
+    f8: 119,
+    f9: 120,
+    g: 71,
+    h: 72,
+    i: 73,
+    j: 74,
+    k: 75,
+    l: 76,
+    left: 37,
+    m: 77,
+    minus: 189,
+    n: 78,
+    o: 79,
+    p: 80,
+    q: 81,
+    r: 82,
+    right: 39,
+    s: 83,
+    shift: 16,
+    space: 32,
+    t: 84,
+    u: 85,
+    up: 38,
+    v: 86,
+    w: 87,
+    x: 88,
+    y: 89,
+    z: 90
+  },
+  BASE_SCORE: 0,
+  BASE_SCORE_MULT: 1,
+  BASE_SCROLL_SPEED: 1,
+  defaultKeyBinds: defaultKeyBinds,
+  getKeyCodeFromLetter: letter => letter.toUpperCase().charCodeAt(0),
+  randomInt: (min, max) => Math.round(Math.random() * (max - min + 1)) + min
 };
-const keyDown = e => {
-  console.log(e);
-
-  switch (state.screen) {
-    case "loading":
-      break;
-    case "start-menu":
-      break;
-    case "song-select":
-      break;
-    default:
-  }
-};
-
-document.addEventListener("keyup", keyUp);
-document.addEventListener("keydown", keyDown);
-
-// audio utils
-
-let audioContext = new AudioContext();
 
 // // utilities for managing in-game modifiers
 
 // constants for in game modifiers
 
-const BASE_SCORE = 0;
-const BASE_SCORE_MULT = 1;
-const BASE_SCROLL_SPEED = 1;
-
-// // math utils
-const randomInt = (min, max) =>
-  Math.round(Math.random() * (max - min + 1)) + min;
-
-// // loading screen utils
+utils.BASE_SCORE = BASE_SCORE;
 
 // set up loading screen
 
@@ -195,17 +242,15 @@ let file = "./../assets/text/loadingScreenText.txt";
 let linecount = 58;
 
 // choose random line numbers. linecount is the number of lines in the text file
-const runLoadingFlavorText = () => {
-  return new Promise((resolve, reject) => {
+utils.runLoadingFlavorText = () => {
+  return new Promise(resolve => {
     const randLine1 = () => {
-      let rt = Math.round(Math.random() * 1000);
+      let rt = Math.round(Math.random() * 500);
       let interval = setInterval(() => {
         if (time <= linecount) {
-          (function loop() {
-            let rand = Math.round(Math.random() * 1000);
-            setTimeout(() => {
-              return addLoadingState();
-            }, rand);
+          (() => {
+            let rand = Math.round(Math.random() * 500);
+            setTimeout(() => addLoadingState(), rand);
           })();
           time++;
         } else {
@@ -216,14 +261,12 @@ const runLoadingFlavorText = () => {
     };
 
     const randLine2 = () => {
-      let randTime = Math.round(Math.random() * 1000);
+      let randTime = Math.round(Math.random() * 500);
       let interval = setInterval(() => {
         if (time <= 26) {
-          (function loop() {
-            let rand = Math.round(Math.random() * 1000);
-            setTimeout(() => {
-              return addLoadingState();
-            }, rand);
+          (() => {
+            let rand = Math.round(Math.random() * 500);
+            setTimeout(() => utils.addLoadingState(), rand);
           })();
           time++;
         } else {
@@ -232,12 +275,12 @@ const runLoadingFlavorText = () => {
       }, randTime);
     };
 
-    // if (time < linecount) {
-    //   randLine1();
-    //   randLine2();
-    // }
+    if (time < linecount) {
+      randLine1();
+      randLine2();
+    }
     // just instantly resolve, for development purposes
-    resolve();
+    // resolve();
   });
 };
 
@@ -245,22 +288,18 @@ let prevLine1, prevLine2;
 const loadingTextTop = document.querySelector(".preloader-text-top");
 const loadingTextBottom = document.querySelector(".preloader-text-bottom");
 // add a line of text to the loading text area.
-const addLoadingState = () => {
+utils.addLoadingState = () => {
   fetch(file)
     .then(t => t.text())
     .then(x => {
-      let r1 = randomInt(0, 58);
-      let r2 = randomInt(60, 71);
+      let r1 = utils.randomInt(0, 58);
+      let r2 = utils.randomInt(60, 71);
       let line1 = x.split("\n")[r1];
       let line2 = x.split("\n")[r2];
 
-      if (prevLine1 != line1) {
-        loadingTextTop.textContent = line1;
-      }
+      if (prevLine1 != line1) loadingTextTop.textContent = line1;
 
-      if (prevLine2 != line2) {
-        loadingTextBottom.textContent = line2;
-      }
+      if (prevLine2 != line2) loadingTextBottom.textContent = line2;
 
       prevLine1 = line1;
       prevLine2 = line2;
@@ -269,7 +308,7 @@ const addLoadingState = () => {
 
 // convert text into an array of inline-block <span> elements (for more convenience in letter-
 // by-letter text animation)
-const toSpans = (text, element) => {
+utils.toSpans = (text, element) => {
   let a = [];
   let letters = text.split("");
   for (let i = 0; i < letters.length; i++) {
