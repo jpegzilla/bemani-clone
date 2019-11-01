@@ -1,5 +1,5 @@
-import utils from "./utils/utils.mjs";
-import stateManager from "./utils/statemanager.mjs";
+import utils from "./modules/utils.mjs";
+import stateManager from "./modules/statemanager.mjs";
 
 // important constants
 const LOCAL_STORE = stateManager.store;

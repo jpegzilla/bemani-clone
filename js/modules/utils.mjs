@@ -231,7 +231,6 @@ const utils = {
   Stopwatch: Stopwatch,
   keymap: keymap,
   toSpans: toSpans,
-  addLoadingState: addLoadingState,
   runLoadingFlavorText: runLoadingFlavorText
 };
 

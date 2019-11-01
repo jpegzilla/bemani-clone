@@ -74,8 +74,15 @@ const rankingName = {
 
 */
 
-const calculateScore = (difficulty, noteCounts) => {};
-
 let keyCount, bpm, level, rank;
 let artistInfo = {};
 let externalResources = {};
+
+const readChart = chart => {};
+
+const calculateScore = (difficulty, noteCounts) => {};
+
+export default {
+  readChart,
+  calculateScore
+};
