@@ -10,7 +10,26 @@ let screens = {
 };
 
 // storage cache - for anything
-let store = {};
+
+class ItemStore {
+  constructor() {
+    this.storage = window.localStorage;
+    this.items = {};
+  }
+
+  addItem(item) {
+    this.items[item] = item;
+    this.storage.setItem(`${item}`, JSON.stringify(item));
+  }
+
+  getItem(item) {
+    return JSON.parse(this.storage.getItem(item));
+  }
+}
+
+const STORE = new ItemStore();
+
+let cache = {};
 
 let gameState = {
   screen: screens.start
@@ -39,3 +58,27 @@ const functionAnalysis = fn => {
   return `call to function ${fn.name} took ${e -
     s} milliseconds.\nfunction returned this value: ${fn()}`;
 };
+
+const state = {
+  screens: screens,
+  cache: cache,
+  gameState: gameState
+};
+
+const functions = {
+  memoize: memoize,
+  functionAnalysis: functionAnalysis
+};
+
+const elements = {
+  main: document.getElementById("main")
+};
+
+const stateManager = {
+  state: state,
+  functions: functions,
+  elements: elements,
+  store: STORE
+};
+
+export default stateManager;

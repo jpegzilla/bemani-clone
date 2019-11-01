@@ -1,3 +1,12 @@
+# assets that don't belong to me
 /notmine
+
+# node
+/node_modules
+
+# minified javascript
 *.min.js
+
+# generated tags file
 .tags
+.tags_swap

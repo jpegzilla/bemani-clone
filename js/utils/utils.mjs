@@ -1,13 +1,6 @@
+import keymap from "./keymap.mjs";
+
 // things for storage
-
-class ItemStore {
-  constructor() {
-    this.storage = window.localStorage;
-    this.items = {};
-  }
-}
-
-const STORE = new ItemStore();
 
 // song file and pattern-related utilities
 
@@ -27,13 +20,7 @@ const getSongData = id => {
   const getVideo = pattern => {
     return video;
   };
-
-  // store.currentSong = songData;
 };
-
-// const readpattern = pattern => {};
-
-// // timing utilities
 
 // simple stopwatch class
 class Stopwatch {
@@ -45,26 +32,6 @@ class Stopwatch {
 
   start() {
     this.startTime = new Date().getTime();
-    let elapsed = this.stopTime - this.startTime;
-    let hour = 1000 * 60 * 60;
-    let min = 1000 * 60;
-    let sec = 1000;
-
-    let h = parseInt(elapsed / hour);
-    elapsed %= hour;
-
-    let m = parseInt(elapsed / min);
-    elapsed %= min;
-
-    let s = parseInt(elapsed / sec);
-    let ms = elapsed % sec;
-
-    this.elapsed = {
-      hours: h,
-      minutes: m,
-      seconds: s,
-      milliseconds: ms
-    };
   }
 
   stop() {
@@ -92,7 +59,7 @@ class Stopwatch {
   }
 
   reset() {
-    this.elapsed = this.stopTime = this.startTime = 0;
+    this.elapsed.h = this.elapsed.minutes = this.elapsed.seconds = this.elapsed.milliseconds = this.stopTime = this.startTime = 0;
   }
 
   getTime() {
@@ -156,93 +123,14 @@ let defaultKeyBinds = {
   }
 };
 
-const utils = {
-  keymap: {
-    0: 48,
-    1: 49,
-    2: 50,
-    3: 51,
-    4: 52,
-    5: 53,
-    6: 54,
-    7: 55,
-    8: 56,
-    9: 57,
-    a: 65,
-    alt: 18,
-    b: 66,
-    c: 67,
-    caps: 20,
-    ctrl: 17,
-    d: 68,
-    down: 40,
-    e: 69,
-    enter: 13,
-    equal: 187,
-    start: 13,
-    f: 70,
-    f1: 112,
-    f10: 121,
-    f11: 122,
-    f12: 123,
-    f2: 113,
-    f3: 114,
-    f4: 115,
-    f5: 116,
-    f6: 117,
-    f7: 118,
-    f8: 119,
-    f9: 120,
-    g: 71,
-    h: 72,
-    i: 73,
-    j: 74,
-    k: 75,
-    l: 76,
-    left: 37,
-    m: 77,
-    minus: 189,
-    n: 78,
-    o: 79,
-    p: 80,
-    q: 81,
-    r: 82,
-    right: 39,
-    s: 83,
-    shift: 16,
-    space: 32,
-    t: 84,
-    u: 85,
-    up: 38,
-    v: 86,
-    w: 87,
-    x: 88,
-    y: 89,
-    z: 90
-  },
-  BASE_SCORE: 0,
-  BASE_SCORE_MULT: 1,
-  BASE_SCROLL_SPEED: 1,
-  defaultKeyBinds: defaultKeyBinds,
-  getKeyCodeFromLetter: letter => letter.toUpperCase().charCodeAt(0),
-  randomInt: (min, max) => Math.round(Math.random() * (max - min + 1)) + min
-};
-
-// // utilities for managing in-game modifiers
-
-// constants for in game modifiers
-
-utils.BASE_SCORE = BASE_SCORE;
-
 // set up loading screen
 
-let randTextLine, randNum, lines;
 let time = 0;
 let file = "./../assets/text/loadingScreenText.txt";
 let linecount = 58;
 
 // choose random line numbers. linecount is the number of lines in the text file
-utils.runLoadingFlavorText = () => {
+const runLoadingFlavorText = () => {
   return new Promise(resolve => {
     const randLine1 = () => {
       let rt = Math.round(Math.random() * 500);
@@ -280,7 +168,8 @@ utils.runLoadingFlavorText = () => {
       randLine2();
     }
     // just instantly resolve, for development purposes
-    // resolve();
+    resolve();
+    // REMEMBER TO REMOVE THIS!!
   });
 };
 
@@ -288,7 +177,7 @@ let prevLine1, prevLine2;
 const loadingTextTop = document.querySelector(".preloader-text-top");
 const loadingTextBottom = document.querySelector(".preloader-text-bottom");
 // add a line of text to the loading text area.
-utils.addLoadingState = () => {
+const addLoadingState = () => {
   fetch(file)
     .then(t => t.text())
     .then(x => {
@@ -308,7 +197,7 @@ utils.addLoadingState = () => {
 
 // convert text into an array of inline-block <span> elements (for more convenience in letter-
 // by-letter text animation)
-utils.toSpans = (text, element) => {
+const toSpans = (text, element) => {
   let a = [];
   let letters = text.split("");
   for (let i = 0; i < letters.length; i++) {
@@ -330,3 +219,20 @@ utils.toSpans = (text, element) => {
   }
   return a;
 };
+
+const utils = {
+  BASE_SCORE: 0,
+  BASE_SCORE_MULT: 1,
+  BASE_SCROLL_SPEED: 1,
+  defaultKeyBinds: defaultKeyBinds,
+  getKeyCodeFromLetter: letter => letter.toUpperCase().charCodeAt(0),
+  randomInt: (min, max) => Math.round(Math.random() * (max - min + 1)) + min,
+  getSongData: getSongData,
+  Stopwatch: Stopwatch,
+  keymap: keymap,
+  toSpans: toSpans,
+  addLoadingState: addLoadingState,
+  runLoadingFlavorText: runLoadingFlavorText
+};
+
+export default utils;
