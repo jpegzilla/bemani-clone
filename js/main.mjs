@@ -1,18 +1,26 @@
 import utils from "./modules/utils.mjs";
-import stateManager from "./modules/statemanager.mjs";
+import { store, state, functions, elements } from "./modules/statemanager.mjs";
+import { attachEventListeners, Navigator } from "./modules/navigator.mjs";
+import { gameLog, log } from "./modules/logger.mjs";
 
 // important constants
-const LOCAL_STORE = stateManager.store;
-const GAME_STATE = stateManager.state;
-const STATE_UTILS = stateManager.functions;
-const GAME_ELEMENTS = stateManager.elements;
+const LOCAL_STORE = store;
+const GAME_STATE = state;
+const STATE_UTILS = functions;
+const GAME_ELEMENTS = elements;
 
 // to display how long the game has been running
 let uptime = new utils.Stopwatch();
 uptime.start();
 
+// instantiate new navigator with the screens object
+state.navigator = new Navigator(state.screens);
+
 window.onload = () => {
-  console.log("✨ loaded ✨");
+  console.log("✨ window loaded ✨");
+  // attach all event listeners
+  attachEventListeners();
+
   // select a random song from the songs directory to play
   // loading screen flavor text
 
@@ -22,14 +30,14 @@ window.onload = () => {
       document.getElementById("start-menu").classList.add("opaque");
       setTimeout(() => {
         document.getElementById("preloader-container").remove();
-        mainElement.focus();
+        GAME_ELEMENTS.main.focus();
       }, 10);
     }, 500);
 
     // main menu stuff
   });
 };
-setTimeout(function() {
+setTimeout(() => {
   uptime.stop();
-  console.log(uptime.elapsed);
+  log(`loaded in ${uptime.elapsed.milliseconds}ms`);
 }, 500);

@@ -1,14 +1,20 @@
-// css screen modules
+// css modules
 
+// misc modules
 @import "component/vars";
 @import "component/anim";
-@import "component/options";
-@import "component/start-menu";
-@import "component/play-area";
-@import "component/settings";
-@import "component/song-select";
-@import "component/stars";
 @import "component/loading-icon";
+@import "component/stars";
+@import "component/layering";
+@import "component/mixins";
+
+// screen modules
+@import "component/modals";
+@import "component/start-menu";
+@import "component/settings";
+@import "component/options";
+@import "component/song-select";
+@import "component/play-area";
 
 :root {
   font-size: 16px;
@@ -97,6 +103,7 @@ body {
       overflow: hidden;
     }
   }
+
   @media (max-width: $midLarge) {
     section,
     main {

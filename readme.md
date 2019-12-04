@@ -33,13 +33,15 @@ the way pattern data is written makes it easier to map songs without use of a vi
 
 ##### headers
 
-contains general information about the song. title, artist, bpm, level, keys, and rank must not be null.
+contains general information about the song. title, artist, bpm, level, keys, mapCreator, window, and levelName must not be null.
+
+**window** is the size of the timing window in milliseconds. **mapCreator** contains the name of the file's author. **keys** is the number of key required to play the song. **level** is the level of difficulty from 0 - 3 (0: very hard, 1: hard, 2: normal, 3: easy). **levelName** is the name of the difficulty. **bpm** is the initial tempo of the song, and everything else is self-explanatory.
 
 example headers:
 
 ```javascript
 "headers": {
-    "genere": "SWING WALTZ",
+    "genre": "SWING WALTZ",
     "title": "CHOCOLATE PHILOSOPHY",
     "artist": "yu tokiwa",
     "bpm": 110,
@@ -47,9 +49,9 @@ example headers:
     "level": 0,
     "rank": 0,
     "hitsounds": {
-      1: "hitsound01.wav",
-      2: "hitsound02.wav",
-      3: "hitsound03.wav"
+      "1": "hitsound01.wav",
+      "2": "hitsound02.wav",
+      "3": "hitsound03.wav"
     },
     "bga": "bg1.webm"
 },
@@ -89,7 +91,7 @@ the way the notes are laid out in the array makes it much easier to visualize th
 ```javascript
 {
   "headers": {
-      "genere": "GARAGE",
+      "genre": "GARAGE",
       "title": "Cranberry City",
       "artist": "lapix",
       "bpm": 138,

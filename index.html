@@ -32,10 +32,33 @@
     <!-- main contains all layers for every screen. -->
 
     <!-- section 1 contains the modals -->
-    <section id="modals" class="modals"></section>
+    <section id="modals" class="modals">
+      <div id="volumeControl" class="modal-child layer-1">
+        <div title="master volume">
+          <div id="volumeControl-master"><b></b>
+            <p>100</p>
+          </div>
+          <div>mas</div>
+        </div>
+
+        <div title="music volume">
+          <div id="volumeControl-music"><b></b>
+            <p>100</p>
+          </div>
+          <div>mus</div>
+        </div>
+
+        <div title="fx volume">
+          <div id="volumeControl-fx"><b></b>
+            <p>100</p>
+          </div>
+          <div>fx</div>
+        </div>
+      </div>
+    </section>
 
     <!-- section 2 contains the start menu -->
-    <section id="start-menu" class="invisible start-menu">
+    <section id="start-menu" class="invisible start-menu layer-2">
       <div class="menu-container">
         <div class="menu-center">
           <div class="main-title">BEMANI CLONE</div>
@@ -45,7 +68,7 @@
           </div>
         </div>
         <div class="option-buttons">
-          <a href="#">★ options</a>
+          <a id="showSettingsScreen" href="#">★ settings</a>
           <!-- <a target="_blank" href="https://github.com/jpegzilla/bemani-clone">github</a>
           <a target="_blank" href="https://discordapp.com/invite/Ft9rVA6">discord</a>
           <a target="_blank" href="https://twitter.com/jpegzilla">twitter</a> -->
@@ -64,16 +87,16 @@
     </section>
 
     <!-- section 3 contains the application settings -->
-    <section id="settings-menu" class="settings-menu"></section>
+    <section id="settings-menu" class="settings-menu layer-3"></section>
 
     <!-- section 4 contains the options selection screen -->
-    <section id="options-select" class="options-select"></section>
+    <section id="options-select" class="options-select layer-4"></section>
 
     <!-- section 5 contains the song selection screen -->
-    <section id="song-select" class="song-select"></section>
+    <section id="song-select" class="song-select layer-5"></section>
 
     <!-- section 6 contains the play area -->
-    <section id="play-area" class="play-area"></section>
+    <section id="play-area" class="play-area layer-6"></section>
 
   </main>
 </body>

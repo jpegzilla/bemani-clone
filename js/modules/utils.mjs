@@ -163,10 +163,10 @@ const runLoadingFlavorText = () => {
       }, randTime);
     };
 
-    if (time < linecount) {
-      randLine1();
-      randLine2();
-    }
+    // if (time < linecount) {
+    //   randLine1();
+    //   randLine2();
+    // }
     // just instantly resolve, for development purposes
     resolve();
     // REMEMBER TO REMOVE THIS!!
@@ -231,6 +231,7 @@ const utils = {
   Stopwatch: Stopwatch,
   keymap: keymap,
   toSpans: toSpans,
+  addLoadingState: addLoadingState,
   runLoadingFlavorText: runLoadingFlavorText
 };
 

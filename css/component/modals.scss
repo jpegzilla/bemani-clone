@@ -1,0 +1,94 @@
+@import "./vars";
+
+section#modals {
+  // all modals
+  .modal-child {
+  }
+
+  // individual modals
+  #volumeControl {
+    @include flexCenter;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 350px;
+    width: 200px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+
+    & > div {
+      @include flexCenter;
+      height: 300px;
+      background-color: black;
+      border: 1px solid $white;
+      max-width: 2.5rem;
+      width: 2.5rem;
+      color: $white;
+      font-size: 90%;
+      font-family: $proggy;
+      flex-direction: column;
+
+      & > div:nth-child(1) {
+        border-left: 4px solid $black;
+        border-right: 4px solid $black;
+        border-top: 4px solid $black;
+        display: flex;
+        flex-grow: 1;
+        isolation: isolate;
+        justify-content: flex-end;
+        position: relative;
+        width: 100%;
+
+        & > p {
+          color: $black;
+          transition: color 0.2s;
+
+          &.color {
+            color: $orange;
+            transition: color 0.2s;
+          }
+
+          font-size: 1rem;
+          z-index: 2;
+        }
+
+        &:hover > b {
+          background-color: $lavmag;
+          transition: background-color 0.3s;
+        }
+
+        & > b {
+          background-color: $white;
+          bottom: 0;
+          display: block;
+          height: 100%;
+          position: absolute;
+          transform-origin: bottom;
+          transition: background-color 0.3s;
+          width: 100%;
+          will-change: height;
+          z-index: 1;
+        }
+      }
+
+      & > div:nth-child(2) {
+        background-color: $black;
+        padding: 1rem 0;
+        text-align: center;
+        user-select: none;
+        width: 100%;
+      }
+
+      & + div {
+        margin-left: 1rem;
+      }
+    }
+
+    &.visible {
+      opacity: 1;
+      transition: opacity 0.2s;
+      pointer-events: auto;
+    }
+  }
+}

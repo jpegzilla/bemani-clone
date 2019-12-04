@@ -10,3 +10,6 @@
 # generated tags file
 .tags
 .tags_swap
+
+# files I'm using that don't need to be in the repo
+unicode.txt

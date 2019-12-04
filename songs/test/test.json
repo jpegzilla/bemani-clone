@@ -1,0 +1,22 @@
+{
+  "headers": {
+    "genre": "SWING WALTZ",
+    "title": "CHOCOLATE PHILOSOPHY",
+    "subtitle": null,
+    "artist": "yu tokiwa",
+    "bpm": 110,
+    "keys": 5,
+    "level": 2,
+    "levelName": "normal",
+    "mapCreator": "jpegzilla",
+    "window": 100,
+    "hitsounds": {
+      "1": "hitsound01.wav",
+      "2": "hitsound02.wav",
+      "3": "hitsound03.wav"
+    },
+    "bga": "bg1.webm"
+  },
+
+  "pattern": []
+}
