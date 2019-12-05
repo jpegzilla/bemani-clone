@@ -28,7 +28,8 @@ export const GLOBAL_FLAGS = {
   hoveringScrollable: false,
   inGame: false,
   screen: screens.start,
-  volumeControlHover: "masterVolume"
+  volumeControlHover: "masterVolume",
+  focusedElement: null
 };
 
 // default global settings

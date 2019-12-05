@@ -1,6 +1,7 @@
 // css modules
 
 // misc modules
+@import "component/fontImports";
 @import "component/vars";
 @import "component/anim";
 @import "component/loading-icon";
@@ -69,9 +70,11 @@ body {
       padding: 2rem 0 0 3rem;
       font-family: $roboto-mono;
       color: $white;
+
       * + * {
         margin-top: 0.25rem;
       }
+
       .preloader-bar {
         height: 1.5rem;
       }

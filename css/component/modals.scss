@@ -58,6 +58,11 @@ section#modals {
           transition: background-color 0.3s;
         }
 
+        &.hover > b {
+          background-color: $lavmag;
+          transition: none;
+        }
+
         & > b {
           background-color: $white;
           bottom: 0;
