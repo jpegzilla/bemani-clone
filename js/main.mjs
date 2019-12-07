@@ -1,7 +1,14 @@
 import utils from "./modules/utils.mjs";
 import { store, state, functions, elements } from "./modules/statemanager.mjs";
-import { attachEventListeners, Navigator } from "./modules/navigator.mjs";
+
+import {
+  attachEventListeners,
+  attachNavigationListeners,
+  Navigator
+} from "./modules/navigator.mjs";
+
 import { gameLog, log } from "./modules/logger.mjs";
+import setupHotkeys from "./modules/hotkeys.mjs";
 
 // important constants
 const LOCAL_STORE = store;
@@ -10,8 +17,8 @@ const STATE_UTILS = functions;
 const GAME_ELEMENTS = elements;
 
 // to display how long the game has been running
-let uptime = new utils.Stopwatch();
-uptime.start();
+let loadtime = new utils.Stopwatch();
+loadtime.start();
 
 // instantiate new navigator with the screens object
 state.navigator = new Navigator(state.screens);
@@ -20,6 +27,10 @@ window.onload = () => {
   console.log("✨ window loaded ✨");
   // attach all event listeners
   attachEventListeners();
+  attachNavigationListeners();
+
+  // set up all hotkeys
+  setupHotkeys();
 
   // select a random song from the songs directory to play
   // loading screen flavor text
@@ -37,7 +48,8 @@ window.onload = () => {
     // main menu stuff
   });
 };
+
 setTimeout(() => {
-  uptime.stop();
-  log(`loaded in ${uptime.elapsed.milliseconds}ms`);
+  loadtime.stop();
+  log(`loaded in ${loadtime.elapsed.milliseconds}ms`);
 }, 500);

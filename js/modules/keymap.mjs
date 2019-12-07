@@ -59,5 +59,9 @@ export default {
   w: 87,
   x: 88,
   y: 89,
-  z: 90
+  z: 90,
+  pgUp: 33,
+  pgDn: 34,
+  home: 36,
+  end: 35
 };
