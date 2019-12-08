@@ -3,9 +3,13 @@
 
 # node
 /node_modules
+.package-lock.json
 
 # minified javascript
-*.min.js
+# *.min.js
+
+# unminified libs I wrote
+/js/libs/cheatcodes.js
 
 # generated tags file
 .tags
@@ -13,3 +17,4 @@
 
 # files I'm using that don't need to be in the repo
 unicode.txt
+song_names_game_modes_difficulty_names.txt

@@ -1,0 +1,94 @@
+@import "./vars";
+
+$cursor: url(../assets/image/cursor.png), auto;
+// $trackColor: $lavmag;
+$trackColor: $beige;
+$trackHeight: 3px;
+$thumbWidth: 24px;
+$thumbHeight: 12px;
+$thumbBorderWidth: 0;
+$thumbBorderColor: $black;
+$thumbMargin: 4.65px;
+
+input[type="range"].settings-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: $thumbMargin 0;
+}
+
+input[type="range"].settings-slider:focus {
+  outline: none;
+}
+
+input[type="range"].settings-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: $trackHeight;
+  cursor: $cursor;
+  background: $trackColor;
+}
+
+input[type="range"].settings-slider::-webkit-slider-thumb {
+  border: $thumbBorderWidth solid $thumbBorderColor;
+  height: $thumbHeight;
+  width: $thumbWidth;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: $cursor;
+  -webkit-appearance: none;
+  margin-top: -$thumbMargin;
+}
+
+input[type="range"].settings-slider:focus::-webkit-slider-runnable-track {
+  background: lighten($trackColor, 15);
+}
+
+input[type="range"].settings-slider::-moz-range-track {
+  width: 100%;
+  height: $trackHeight;
+  cursor: $cursor;
+  background: $trackColor;
+}
+
+input[type="range"].settings-slider::-moz-range-thumb {
+  border: $thumbBorderWidth solid $thumbBorderColor;
+  height: $thumbHeight;
+  width: $thumbWidth;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: $cursor;
+}
+
+input[type="range"].settings-slider::-ms-track {
+  width: 100%;
+  height: $trackHeight;
+  cursor: $cursor;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type="range"].settings-slider::-ms-fill-lower {
+  background: lighten($trackColor, 15);
+}
+
+input[type="range"].settings-slider::-ms-fill-upper {
+  background: $trackColor;
+}
+
+input[type="range"].settings-slider::-ms-thumb {
+  border: $thumbBorderWidth solid $thumbBorderColor;
+  height: $thumbHeight;
+  width: $thumbWidth;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: $cursor;
+  height: $trackHeight;
+}
+
+input[type="range"].settings-slider:focus::-ms-fill-lower {
+  background: $trackColor;
+}
+
+input[type="range"].settings-slider:focus::-ms-fill-upper {
+  background: lighten($trackColor, 15);
+}

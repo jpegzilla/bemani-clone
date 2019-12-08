@@ -1,14 +1,18 @@
+.layer-0 {
+  z-index: 11;
+}
+
 .layer-1 {
   z-index: 10;
 } // modals layer
 
 .layer-2 {
-  z-index: 9;
+  z-index: 8;
 } // start menu layer
 
-.layer-3 {
-  z-index: 8;
-} // application settings layer
+// .layer-3 {
+//   z-index: 9;
+// } // application settings layer
 
 .layer-4 {
   z-index: 7;

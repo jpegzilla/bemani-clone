@@ -8,8 +8,10 @@
 @import "component/stars";
 @import "component/layering";
 @import "component/mixins";
+@import "component/sliders";
 
 // screen modules
+@import "component/overlays";
 @import "component/modals";
 @import "component/start-menu";
 @import "component/settings";
@@ -25,6 +27,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  cursor: url(../assets/image/cursor.png), auto;
 }
 
 // // misc elements
@@ -46,7 +49,6 @@ body {
     font-family: $roboto-mono;
   }
 
-  cursor: url(../assets/image/cursor.png), auto;
   isolation: isolate;
   #preloader-container {
     z-index: 2;

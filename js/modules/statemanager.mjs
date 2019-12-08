@@ -99,6 +99,8 @@ const saveGameData = () => {
     itemstore: store
   };
 
+  console.log(o);
+
   localStorage.setItem("bc_game_data", JSON.stringify(o));
 };
 
@@ -108,13 +110,21 @@ const clearGameData = () => {
 
 const readGameSave = () => {
   const o = localStorage.getItem("bc_game_data");
-  store.loadFromStorage(JSON.parse(o));
+  console.log("reading game save.", o);
+  // store.loadFromStorage(JSON.parse(o));
 };
 
 export const state = {
   screens: screens,
   cache: cache,
-  navigator: null
+  navigator: null,
+  cheatcodes: null,
+  timeouts: {
+    volumeTimeout: null
+  },
+  timers: {
+    uptime: null
+  }
 };
 
 export const functions = {

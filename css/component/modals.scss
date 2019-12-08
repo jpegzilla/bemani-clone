@@ -1,8 +1,39 @@
 @import "./vars";
 
 section#modals {
-  // all modals
+  @include flexCenter;
+  isolation: isolate;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s;
+  }
+
+  // all modals / modal background
+  .modal-background {
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    background-color: transparentize($black, 0.3);
+  }
+
   .modal-child {
+    z-index: 1;
+
+    &.nav-fadeout {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    &.nav-hidden {
+      display: none;
+    }
   }
 
   // individual modals
@@ -16,6 +47,10 @@ section#modals {
     opacity: 0;
     transition: opacity 0.2s;
     pointer-events: none;
+
+    & * {
+      user-select: none;
+    }
 
     & > div {
       @include flexCenter;
@@ -51,6 +86,8 @@ section#modals {
 
           font-size: 1rem;
           z-index: 2;
+          user-select: none;
+          pointer-events: none;
         }
 
         &:hover > b {
@@ -74,6 +111,7 @@ section#modals {
           width: 100%;
           will-change: height;
           z-index: 1;
+          pointer-events: none;
         }
       }
 
@@ -94,6 +132,71 @@ section#modals {
       opacity: 1;
       transition: opacity 0.2s;
       pointer-events: auto;
+    }
+  }
+
+  #settingsMenu {
+    height: 90%;
+    width: 55vw;
+    border-top: 1px solid $white;
+    border-bottom: 1px solid $white;
+    background-color: transparentize($black, 0.6);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(200px, auto);
+    user-select: none;
+    opacity: 0;
+    transition: opacity 0.25s ease-out 0.5s;
+    display: none;
+
+    &.active {
+      transition: opacity 0.25s ease-in 0.5s;
+
+      opacity: 1;
+      display: grid;
+    }
+
+    ul {
+      list-style-type: none;
+
+      li + li {
+        margin-top: 1rem;
+      }
+
+      li {
+        padding: 1rem;
+        background-color: transparentize($white, 0.9);
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: transparentize($white, 0.85);
+          transition: background-color 0.2s;
+        }
+      }
+    }
+
+    .settings-menu-group {
+      padding: 1rem;
+      color: $white;
+
+      header {
+        width: 100%;
+        margin-bottom: 2rem;
+
+        h2 {
+          font-size: 2rem;
+          font-family: $josefin;
+        }
+      }
+
+      label {
+        font-family: $proggy;
+        font-size: 1.5rem;
+
+        & + input {
+          margin-top: 1.5rem;
+        }
+      }
     }
   }
 }
