@@ -64,16 +64,13 @@ export const attachNavigationListeners = () => {
     e.stopPropagation();
     e.preventDefault();
 
-    navLog("showing settings screen");
-
     // show settings modal
     document.getElementById("settingsMenu").classList.add("active");
-    document.getElementById("modals").classList.add("active");
+    document.getElementById("modalsBackground").classList.add("active");
     // using a named arrow function here so I can remove the listener in the callback
 
     const closeSettings = e => {
       e.stopPropagation();
-      console.log(e);
 
       // if you click outside the settings menu or if you hit escape
       if (
@@ -82,10 +79,9 @@ export const attachNavigationListeners = () => {
           e.path &&
           !e.path.includes(document.getElementById("settingsMenu")))
       ) {
-        console.log("close settings");
         // hide settings modal
         document.getElementById("settingsMenu").classList.remove("active");
-        document.getElementById("modals").classList.remove("active");
+        document.getElementById("modalsBackground").classList.remove("active");
         document.removeEventListener("click", closeSettings);
         document.removeEventListener("keydown", closeSettings);
       }
