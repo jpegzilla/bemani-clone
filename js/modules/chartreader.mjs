@@ -1,9 +1,25 @@
-// script for reading the loaded chart.
+import { getSongData } from "./utils.mjs";
 
-let chartTemplate = {
-  headers: {},
-  pattern: {}
-};
+// class for reading the loaded chart.
+
+class ChartReader {
+  constructor(chart) {
+    this.chart = {};
+    this.headers = this.chart.headers;
+    this.pattern = this.chart.pattern;
+    this.score = 0;
+    this.judgementWindow = this.headers.window;
+  }
+
+  fail() {}
+
+  start() {}
+}
+
+// chart = {
+//   headers: {},
+//   pattern: {}
+// };
 
 const rankingName = {
   sss: {
