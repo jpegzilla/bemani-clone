@@ -181,47 +181,58 @@ in this example, the first 2 notes in measure 1 will both be assigned a hitsound
 
 ```
 (root directory)
-├── assets
-│   ├── audio
-│   ├── image
-│   ├── fonts
-│   └── text
-├── css
-│   └── main.min.css
-│       ├── anim.min.css
-│       ├── options.min.css
-│       ├── play-area.min.css
-│       ├── settings.min.css
-│       ├── song-select.min.css
-│       └── stars.min.css
-├── js
-│   ├── audioplayer.js
-│   ├── chartreader.js
-│   ├── effects.js
-│   ├── main.js
-│   ├── player.js
-│   ├── statemanager.js
-│   └── utils.js
-├── server
-│   ├── api
-│   │   ├── api.php
-│   │   └── index.php
-│   └── js
-│       ├── server.js
-│       └── utils.js
-├── skins
-│   └── default.json
-├── songs
-│   └── meikai zodiac - alrescha
-│       ├── song.mp3
-│       ├── hitsound01.wav
-│       ├── hitsound02.wav
-│       ├── hitsound03.wav
-│       ├── bga.webm
-│       ├── pattern_normal.json
-│       ├── pattern_hard.json
-│       └── pattern_ex.json
-└── index.html
++-- assets
+    +-- audio
+    +-- image
+    +-- fonts
+    +-- text
++-- css
+    +-- component
+        +-- _anim.scss
+        +-- _fontImports.scss
+        +-- _layering.scss
+        +-- _mixins.scss
+        +-- _sliders.scss
+        +-- _vars.scss
+        +-- modals.scss
+        +-- options.scss
+        +-- overlays.scss
+        +-- play-area.scss
+        +-- settings.scss
+        +-- song-select.scss
+        +-- stars.scss
+        +-- start-menu.scss
+    +-- main.css
+    +-- main.min.css
+    +-- main.scss
++-- js
+    +-- libs
+        +-- cheatcodes.min.mjs
+        +-- cheatcodes.mjs
+        +-- saltlines.ruler.mjs
+    +-- modules
+        +-- audioplayer.mjs
++-- server
+    +-- api
+        +-- api.php
+        +-- index.php
+    +-- js
+        +-- server.js
+        +-- utils.js
++-- skins
+    +-- default.json
++-- songs
+    +-- meikai zodiac - alrescha
+        +-- song.mp3
+        +-- hitsound01.wav
+        +-- hitsound02.wav
+        +-- hitsound03.wav
+        +-- bga.webm
+        +-- pattern_normal.json
+        +-- pattern_hard.json
+        +-- pattern_ex.json
++-- index.html
++-- serviceWorker.js
 ```
 
 *wip!*
@@ -234,13 +245,20 @@ in this example, the first 2 notes in measure 1 will both be assigned a hitsound
 
 ***
 
-current todo list:
-- [ ] finalize pattern file spec
-- [ ] finish pattern file parser
-- [ ] finalize directory structure
-- [ ] choose fonts/colors
-- [ ] create loading screen
-- [ ] create initial ui
-future:
-- [ ] create player database in order to allow worldwide player competition
-- [ ] create some sort of visual pattern editor
+**current todo list:**
+-   [ ] finalize pattern file spec
+-   [ ] finish pattern file parser
+-   [ ] finalize directory structure
+-   [ ] choose ~fonts~ / colors
+-   [ ] implement sound player (song / sfx) utility classes
+-   [x] create loading screen
+-   [x] create initial ui
+-   [ ] implement saving game to local storage
+-   [ ] finish application settings menu (add more settings for colors, performance settings, etc)
+
+**future:**
+
+-   [ ] create player database in order to allow worldwide player competition
+-   [ ] create some sort of visual pattern editor
+-   [ ] create song selection screen
+-   [ ] create "in betweeen" transition screens to show during certain navigation events(??) kind of like in sdvx
