@@ -1,10 +1,21 @@
 import keymap from "./keymap.mjs";
 
+export const getPosInElement = e => {
+  let rect = e.target.getBoundingClientRect();
+  let height = e.target.offsetHeight;
+  let x = e.clientX - rect.left; // x position in element
+  let xPercent = Math.floor((x / e.clientX) * 100);
+  let y = e.clientY - rect.top; // y position in element
+  let yPercent = 100 - Math.floor((y / height) * 100);
+
+  return { x, xPercent, y, yPercent };
+};
+
 // things for storage
 
 // song file and pattern-related utilities
 
-const getSongData = id => {
+export const getSongData = id => {
   // store the song data in global storage
   const getPattern = pattern => {
     return pattern;
@@ -32,6 +43,10 @@ class Stopwatch {
 
   start() {
     this.startTime = new Date().getTime();
+    setInterval(
+      () => (this.elapsed = new Date().getTime() - this.startTime),
+      100
+    );
   }
 
   stop() {
@@ -220,6 +235,14 @@ const toSpans = (text, element) => {
   return a;
 };
 
+export const childrenArray = id =>
+  Array.from(document.getElementById(id).children);
+
+export const typedChildrenArray = (id, type) =>
+  Array.from(document.getElementById(id).getElementsByTagName(type));
+
+export const did = id => document.getElementById(id);
+
 const utils = {
   BASE_SCORE: 0,
   BASE_SCORE_MULT: 1,
@@ -227,7 +250,6 @@ const utils = {
   defaultKeyBinds: defaultKeyBinds,
   getKeyCodeFromLetter: letter => letter.toUpperCase().charCodeAt(0),
   randomInt: (min, max) => Math.round(Math.random() * (max - min + 1)) + min,
-  getSongData: getSongData,
   Stopwatch: Stopwatch,
   keymap: keymap,
   toSpans: toSpans,
