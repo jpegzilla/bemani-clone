@@ -1,6 +1,6 @@
 import { navLog, log } from "./logger.mjs";
 import { GLOBAL_FLAGS, GLOBAL_SETTINGS, state } from "./statemanager.mjs";
-import { getPosInElement, childrenArray } from "./utils.mjs";
+import { getPosInElement, childrenArray, did } from "./utils.mjs";
 import keymap from "./keymap.mjs";
 
 let { volumeTimeout } = state.timeouts;
@@ -71,13 +71,14 @@ export const attachNavigationListeners = () => {
 
     const closeSettings = e => {
       e.stopPropagation();
+      const path = e.path || e.composedPath() || null;
+      // if you click outside the settings menu or hit escape
+      // the menu closes.
 
-      // if you click outside the settings menu or if you hit escape
       if (
         (e.which && e.which == keymap.escape) ||
         (e instanceof MouseEvent &&
-          e.path &&
-          !e.path.includes(document.getElementById("settingsMenu")))
+          !path.includes(document.getElementById("settingsMenu")))
       ) {
         // hide settings modal
         document.getElementById("settingsMenu").classList.remove("active");
@@ -100,79 +101,79 @@ export const handleVolumeModification = (
   outright = false,
   element = null
 ) => {
-  if (!GLOBAL_FLAGS.hoveringScrollable) {
-    const { masterVolume, musicVolume, fxVolume } = GLOBAL_SETTINGS;
+  const { masterVolume, musicVolume, fxVolume } = GLOBAL_SETTINGS;
 
-    // show the volume slider here
-    document.getElementById("volumeControl").classList.add("visible");
+  // show the volume slider here
+  document.getElementById("volumeControl").classList.add("visible");
 
-    // clear the timeout so that it can reset every time there's a scroll event
-    clearTimeout(volumeTimeout);
+  // clear the timeout so that it can reset every time there's a scroll event
+  clearTimeout(volumeTimeout);
 
-    // masterVolume: 100,
-    // musicVolume: 100,
-    // fxVolume: 100
-    let volumeToAffectMarker = element || GLOBAL_FLAGS.volumeControlHover;
-    let volumeToAffect = masterVolume;
-    let elementToAffect, volumeIndicatorElement;
+  // masterVolume: 100,
+  // musicVolume: 100,
+  // fxVolume: 100
+  let volumeToAffectMarker = element || GLOBAL_FLAGS.volumeControlHover;
+  let volumeToAffect = masterVolume;
+  let elementToAffect, volumeIndicatorElement;
 
-    switch (volumeToAffectMarker) {
-      case "masterVolume":
-        elementToAffect = document.getElementById("volumeControl-master")
-          .children[0];
-        volumeIndicatorElement = document.getElementById("volumeControl-master")
-          .children[1];
-        volumeToAffect = masterVolume;
-        break;
+  switch (volumeToAffectMarker) {
+    case "masterVolume":
+      elementToAffect = document.getElementById("volumeControl-master")
+        .children[0];
+      volumeIndicatorElement = document.getElementById("volumeControl-master")
+        .children[1];
+      volumeToAffect = masterVolume;
+      break;
 
-      case "musicVolume":
-        elementToAffect = document.getElementById("volumeControl-music")
-          .children[0];
-        volumeIndicatorElement = document.getElementById("volumeControl-music")
-          .children[1];
-        volumeToAffect = musicVolume;
-        break;
+    case "musicVolume":
+      elementToAffect = document.getElementById("volumeControl-music")
+        .children[0];
+      volumeIndicatorElement = document.getElementById("volumeControl-music")
+        .children[1];
+      volumeToAffect = musicVolume;
+      break;
 
-      case "fxVolume":
-        elementToAffect = document.getElementById("volumeControl-fx")
-          .children[0];
-        volumeIndicatorElement = document.getElementById("volumeControl-fx")
-          .children[1];
-        volumeToAffect = fxVolume;
-        break;
-    }
-
-    if (!outright) {
-      if (d > 0) {
-        volumeToAffect++;
-        if (volumeToAffect > 100) volumeToAffect = 100;
-
-        if (volumeToAffect <= 100)
-          GLOBAL_SETTINGS[volumeToAffectMarker] = parseInt(volumeToAffect);
-      } else if (d < 0) {
-        volumeToAffect--;
-        if (volumeToAffect < 0) volumeToAffect = 0;
-
-        if (volumeToAffect >= 0)
-          GLOBAL_SETTINGS[volumeToAffectMarker] = parseInt(volumeToAffect);
-      }
-    } else GLOBAL_SETTINGS[volumeToAffectMarker] = parseInt(d);
-
-    if (element) {
-      // switch through elements to add the color class to the correct volume indicator
-      // classes: bar-masterVolume, bar-musicVolume, bar-fxVolume
-      document.getElementById(
-        `bar-${element}`
-      ).style.cssText = `transform: scaleY(${volumeToAffect / 100})`;
-    } else {
-      elementToAffect.style.cssText = `transform: scaleY(${volumeToAffect /
-        100})`;
-    }
-
-    if (volumeToAffect < 96) volumeIndicatorElement.classList.add("color");
-    else volumeIndicatorElement.classList.remove("color");
-    volumeIndicatorElement.textContent = volumeToAffect;
+    case "fxVolume":
+      elementToAffect = document.getElementById("volumeControl-fx").children[0];
+      volumeIndicatorElement = document.getElementById("volumeControl-fx")
+        .children[1];
+      volumeToAffect = fxVolume;
+      break;
   }
+
+  if (!outright) {
+    if (d > 0) {
+      volumeToAffect++;
+      if (volumeToAffect > 100) volumeToAffect = 100;
+
+      if (volumeToAffect <= 100)
+        GLOBAL_SETTINGS[volumeToAffectMarker] = parseInt(volumeToAffect);
+    } else if (d < 0) {
+      volumeToAffect--;
+      if (volumeToAffect < 0) volumeToAffect = 0;
+
+      if (volumeToAffect >= 0)
+        GLOBAL_SETTINGS[volumeToAffectMarker] = parseInt(volumeToAffect);
+    }
+  } else GLOBAL_SETTINGS[volumeToAffectMarker] = parseInt(d);
+
+  // set the corresponding slider in the settings to the correct value
+  did(`settings-menu-${volumeToAffectMarker}`).value = volumeToAffect;
+
+  if (element) {
+    // switch through elements to add the color class to the correct volume indicator
+    // classes: bar-masterVolume, bar-musicVolume, bar-fxVolume
+    document.getElementById(
+      `bar-${element}`
+    ).style.cssText = `transform: scaleY(${volumeToAffect / 100})`;
+  } else {
+    elementToAffect.style.cssText = `transform: scaleY(${volumeToAffect /
+      100})`;
+  }
+
+  if (volumeToAffect < 96) volumeIndicatorElement.classList.add("color");
+  else volumeIndicatorElement.classList.remove("color");
+  volumeIndicatorElement.textContent = volumeToAffect;
 };
 
 export const hideControl = () => {
@@ -197,9 +198,6 @@ export const attachEventListeners = () => {
     .forEach(e =>
       e.addEventListener("focus", () => (GLOBAL_FLAGS.focusedElement = e.id))
     );
-
-  let isVolumeControlActive = () =>
-    document.getElementById("volumeControl").classList.contains("visible");
 
   // handler for all key events
   document.addEventListener("keydown", e => {
@@ -309,14 +307,17 @@ export const attachEventListeners = () => {
   });
   // === end section ===
 
-  // listener for non-scrolling mousewheel events
+  // listener for non-scrolling wheel events
   document.addEventListener(
-    "mousewheel",
+    "wheel",
     e => {
-      // determine whether the user is scrolling up or down
-      const d = e.deltaY > 0 ? -1 : 1;
-      handleVolumeModification(d);
-      volumeTimeout = setTimeout(hideControl, 3000);
+      if (!GLOBAL_FLAGS.hoveringScrollable) {
+        // determine whether the user is scrolling up or down
+        // positive d is up, negative is down
+        const d = e.deltaY > 0 ? -1 : 1;
+        handleVolumeModification(d);
+        volumeTimeout = setTimeout(hideControl, 3000);
+      }
     },
     { passive: true }
   );
