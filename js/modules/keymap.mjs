@@ -20,6 +20,7 @@ export default {
   e: 69,
   enter: 13,
   equal: 187,
+  escape: 27,
   start: 13,
   f: 70,
   f1: 112,
