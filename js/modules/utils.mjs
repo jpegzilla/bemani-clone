@@ -241,20 +241,18 @@ export const childrenArray = id =>
 export const typedChildrenArray = (id, type) =>
   Array.from(document.getElementById(id).getElementsByTagName(type));
 
+export const typedElementArray = type =>
+  Array.from(document.getElementsByTagName(type));
+
 export const did = id => document.getElementById(id);
 
-const utils = {
-  BASE_SCORE: 0,
-  BASE_SCORE_MULT: 1,
-  BASE_SCROLL_SPEED: 1,
-  defaultKeyBinds: defaultKeyBinds,
+export const utils = {
+  defaultKeyBinds,
   getKeyCodeFromLetter: letter => letter.toUpperCase().charCodeAt(0),
   randomInt: (min, max) => Math.round(Math.random() * (max - min + 1)) + min,
-  Stopwatch: Stopwatch,
-  keymap: keymap,
-  toSpans: toSpans,
-  addLoadingState: addLoadingState,
-  runLoadingFlavorText: runLoadingFlavorText
+  Stopwatch,
+  keymap,
+  toSpans,
+  addLoadingState,
+  runLoadingFlavorText
 };
-
-export default utils;
