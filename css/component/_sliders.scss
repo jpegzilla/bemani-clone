@@ -11,6 +11,7 @@ $thumbBorderColor: $black;
 $thumbMargin: 4.65px;
 
 input[type="range"].settings-slider {
+  all: unset;
   -webkit-appearance: none;
   width: 100%;
   margin: $thumbMargin 0;
