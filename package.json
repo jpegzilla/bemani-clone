@@ -1,0 +1,8 @@
+{
+  "name": "bemani-clone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jpegzilla/bemani-clone.git",
+  "author": "jpegzilla <eris@jpegzilla.com>",
+  "license": "MIT"
+}
