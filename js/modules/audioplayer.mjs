@@ -1,6 +1,10 @@
+import { GLOBAL_SETTINGS } from "./statemanager.mjs";
+import { normalize } from "./../libs/exstat_partial.mjs";
+
 class Sound {
   constructor(path) {
     this.path = path;
+    this.paused = false;
 
     // what timestamp to start at
     this.startTime = 0;
@@ -13,14 +17,45 @@ class Sound {
     // equal to the pauseTime.
     this.pauseTime = 0;
 
+    this.ctx = new AudioContext();
+    this.dest = this.ctx.destination;
+    this.gain = this.ctx.createGain();
+
+    // when setting the volume of a sound,
+    // the minimum and maximum volume should be normalized to the set
+    // [0, GLOBAL_SETTINGS.masterVolume]
+
     console.log("sound:", { path });
   }
 
-  play() {}
+  play() {
+    if (this.paused) this.ctx.resume();
+    else this.ctx.play();
+  }
 
-  pause() {}
+  pause() {
+    this.paused = true;
+    this.ctx.pause();
+    this.pauseTime = this.ctx.currentTime;
+  }
 
-  stop() {}
+  stop() {
+    this.startTime = 0;
+    this.stopTime = 0;
+  }
+
+  pan(direction) {}
+
+  setVolume(volume) {}
+
+  fadeVolume() {}
+
+  destroy() {
+    this.ctx.close();
+    this.startTime = 0;
+    this.stopTime = 0;
+    this.pauseTime = 0;
+  }
 }
 
 export class SoundEffect extends Sound {
@@ -32,5 +67,11 @@ export class SoundEffect extends Sound {
 export class Music extends Sound {
   constructor(path) {
     super(path);
+
+    this.ctx = document.createElement("audio");
+    this.listener = this.ctx.listener;
+    this.compressor = this.ctx.createDynamicsCompressor();
   }
+
+  tapeStop() {}
 }
