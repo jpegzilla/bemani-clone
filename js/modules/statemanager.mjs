@@ -29,7 +29,12 @@ export const GLOBAL_FLAGS = {
   inGame: false,
   screen: screens.start,
   volumeControlHover: "masterVolume",
-  focusedElement: null
+  focusedElement: null,
+  score: {
+    BASE_SCORE: 0,
+    BASE_SCORE_MULT: 1,
+    BASE_SCROLL_SPEED: 1
+  }
 };
 
 // default global settings
