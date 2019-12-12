@@ -1,6 +1,7 @@
 import cheatcode from "./../libs/cheatcodes.mjs";
 import { log } from "./logger.mjs";
 import { GLOBAL_FLAGS, GLOBAL_SETTINGS, state } from "./statemanager.mjs";
+import { Music, SoundEffect } from "./audioplayer.mjs";
 
 export default () => {
   // konami code, just for testing
@@ -25,6 +26,10 @@ export default () => {
   const showGlobalObject = new cheatcode("ctrl, alt, s", () => {
     console.log({ GLOBAL_FLAGS, GLOBAL_SETTINGS, state });
   });
+
+  const newSound = new SoundEffect("hello");
+  console.log(newSound);
+
   // run the start function on each hotkey
   state.cheatcodes = [konami, openSettings, clearAndReload, showGlobalObject];
 
