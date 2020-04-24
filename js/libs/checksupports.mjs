@@ -10,7 +10,7 @@ const webAudioAPI = () => {
   let context;
 
   try {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    context = window.AudioContext || window.webkitAudioContext;
     context = new AudioContext();
     context.close();
     return true;
@@ -21,10 +21,16 @@ const webAudioAPI = () => {
 
 export const checkSupports = () => {
   const toCheck = [composedPath, webAudioAPI];
-  // return toCheck.every(Boolean);
+
   let errors = [];
 
-  toCheck.forEach(item => (item() === true ? true : errors.push(item())));
+  toCheck.forEach(item => {
+    try {
+      return item();
+    } catch (err) {
+      errors.push(err);
+    }
+  });
 
   if (errors.length === 0) {
     return true;
