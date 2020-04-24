@@ -1,0 +1,25 @@
+notes:
+
+  on layering:
+    the reason that the song selection screen is a lower z-index than the song options selection screen is because the song options need to render on top of song selection.
+
+    both the song selection and the options screen will disappear once the actual play area screen (layer 6 @ z-index: 5) is revealed (after song options are set.)
+
+    layer 3 is currently nonexistent and unused. it used to be where the application settings were going to be, but I changed my mind and moved them to the modals layer (layer 1). maybe something can still be done with layer 3?
+
+todo:
+
+  sound work:
+    create some sort of class or data attribute that I can use to attach events to certain elements and use those events to trigger specific sound effects. for example, an element with an attribute like data-menu-item-click would make a click sound when it was clicked.
+
+  typography, text effects
+    give the main menu text the effects that will define the entire feel of the game's subsequent effects. elegant but intense
+
+    loading screen:
+      nhelv-style "matrix-esque" text rain, followed by the main title fading in with the spacing between the letters starting out fairly large and slowly shrinking down until the title is totally faded in
+
+  loading spinner:
+    create a reusable loading spinner thing that can be hidden and revealed as needed in the modals layer of the application.
+
+    look ideas:
+      spinning triangle with semi-random flashes of colored squares behind it. the triangle has an animated gap in its edge that moves around the triangle while it spins. try matching the direction of the spin with the direction of the gap as well as using opposite directions.

@@ -1,7 +1,10 @@
 // contains: a bunch of methods for crud-ing player information. uses localstorage.
 
 class Player {
-  constructor(name, level, rank, title, scores, playCount) {
+  constructor(options) {
+    const { id, name, level, rank, title, scores, playCount } = options;
+
+    this.id = id;
     this.name = name;
     this.level = level || 1;
     this.rank = rank || 1;
@@ -19,6 +22,21 @@ class Player {
   addPlay(play) {}
 
   changeTitle(title) {}
+
+  exportAll() {
+    const toExport = {
+      name: this.name,
+      level: this.level,
+      rank: this.rank,
+      title: this.title,
+      scores: this.scores,
+      playCount: this.playCount
+    };
+  }
+
+  save() {}
+
+  login(id) {}
 
   logOut() {}
 }

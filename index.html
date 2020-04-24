@@ -86,15 +86,15 @@
           <ul>
             <li>
               <label for="settings-menu-masterVolume">master volume</label>
-              <input data-modify="masterVolume" type="range" id="settings-menu-masterVolume" class="settings-slider" min="-1" max="101" value="101">
+              <input data-modify="masterVolume" type="range" id="settings-menu-masterVolume" class="settings-slider" min="0" max="100" value="100">
             </li>
             <li>
               <label for="settings-menu-musicVolume">music volume</label>
-              <input data-modify="musicVolume" type="range" id="settings-menu-musicVolume" class="settings-slider" min="-1" max="101" value="101">
+              <input data-modify="musicVolume" type="range" id="settings-menu-musicVolume" class="settings-slider" min="0" max="100" value="100">
             </li>
             <li>
               <label for="settings-menu-fxVolume">fx volume</label>
-              <input data-modify="fxVolume" type="range" id="settings-menu-fxVolume" class="settings-slider" min="-1" max="101" value="101">
+              <input data-modify="fxVolume" type="range" id="settings-menu-fxVolume" class="settings-slider" min="0" max="100" value="100">
             </li>
           </ul>
         </div>
@@ -153,6 +153,22 @@
 </body>
 <!-- main javascript -->
 <script type="module" src="./js/main.mjs" charset="utf-8"></script>
+<!-- module check -->
+<script nomodule>
+  console.error('this browser DOES NOT support <script type="module">');
+
+  document.querySelector(".preloader-text-top").textContent = "this browser does not support the modules used by this game.";
+  document.querySelector(".preloader-text-bottom").textContent =
+    "please upgrade to the latest version of firefox or chrome. the game will not load.";
+
+  if (
+    window.confirm(
+      "this game is not supported in this browser.\nplease upgrade to a newer browser, such as the latest version of chrome or firefox."
+    )
+  ) {
+    window.open("https://www.mozilla.org/en-US/firefox/new/", "_blank");
+  }
+</script>
 <!-- service worker -->
 <script type="text/javascript">
   // load service worker here

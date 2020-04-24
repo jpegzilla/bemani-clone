@@ -1,4 +1,4 @@
-import { GLOBAL_SETTINGS } from "./statemanager.mjs";
+import { GLOBAL_SETTINGS as g } from "./statemanager.mjs";
 import { normalize } from "./../libs/exstat_partial.mjs";
 
 class Sound {
@@ -9,46 +9,34 @@ class Sound {
     // what timestamp to start at
     this.startTime = 0;
 
-    // the timestamp when the sound was stopped
-    this.stopTime = 0;
-
     // the timestamp when the sound is paused.
     // if the audio is paused, then the startTime is set
     // equal to the pauseTime.
     this.pauseTime = 0;
 
     this.ctx = new AudioContext();
-    this.dest = this.ctx.destination;
-    this.gain = this.ctx.createGain();
+    this.elem = document.createElement("audio");
+    this.elem.src = this.path;
+    this.track = this.ctx.createMediaElementSource(this.elem);
 
     // when setting the volume of a sound,
     // the minimum and maximum volume should be normalized to the set
     // [0, GLOBAL_SETTINGS.masterVolume]
 
-    console.log("sound:", { path });
+    // console.log("sound:", { path });
   }
 
-  play() {
-    if (this.paused) this.ctx.resume();
-    else this.ctx.play();
-  }
+  play() {}
 
-  pause() {
-    this.paused = true;
-    this.ctx.pause();
-    this.pauseTime = this.ctx.currentTime;
-  }
+  pause() {}
 
-  stop() {
-    this.startTime = 0;
-    this.stopTime = 0;
-  }
+  stop() {}
 
   pan(direction) {}
 
   setVolume(volume) {}
 
-  fadeVolume() {}
+  fadeVolume(time) {}
 
   destroy() {
     this.ctx.close();

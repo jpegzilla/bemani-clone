@@ -1,0 +1,42 @@
+// css modules
+
+// misc modules
+@import components/defaults
+@import components/fonts
+@import components/vars
+@import components/anim
+@import components/loading_icon
+@import components/stars
+@import components/mixins
+
+// screen modules
+@import components/screens/nomobile
+
+body
+  isolation: isolate
+
+  main
+    z-index: 1
+    height: 100vh
+    width: 100vw
+    padding: 0
+    margin: 0
+    position: absolute
+    top: 0
+    left: 0
+    background-color: black
+    isolation: isolate
+
+    section
+      height: 100%
+      width: 100%
+      position: absolute
+      overflow: hidden
+
+  @media (max-width: $midLarge)
+    section,
+    main
+      display: none
+
+    .mobile-warning
+      display: flex

@@ -145,7 +145,7 @@ let file = "./../assets/text/loadingScreenText.txt";
 let linecount = 58;
 
 // choose random line numbers. linecount is the number of lines in the text file
-const runLoadingFlavorText = () => {
+export const runLoadingFlavorText = () => {
   return new Promise(resolve => {
     const randLine1 = () => {
       let rt = Math.round(Math.random() * 500);
@@ -235,15 +235,21 @@ const toSpans = (text, element) => {
   return a;
 };
 
+// buffer class for loading assets
+
+// find all children of an element with a specific id
 export const childrenArray = id =>
   Array.from(document.getElementById(id).children);
 
+// find all children of an element with a specific id that match an html tag
 export const typedChildrenArray = (id, type) =>
   Array.from(document.getElementById(id).getElementsByTagName(type));
 
+// find all elements of a specific html tag
 export const typedElementArray = type =>
   Array.from(document.getElementsByTagName(type));
 
+// wrapper for getelementbyid
 export const did = id => document.getElementById(id);
 
 export const utils = {
@@ -252,7 +258,5 @@ export const utils = {
   randomInt: (min, max) => Math.round(Math.random() * (max - min + 1)) + min,
   Stopwatch,
   keymap,
-  toSpans,
-  addLoadingState,
-  runLoadingFlavorText
+  toSpans
 };
