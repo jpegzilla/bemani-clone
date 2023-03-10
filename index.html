@@ -1,177 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="author" content="jpegzilla" />
+    <meta name="robots" content="index, follow" />
+    <link rel="stylesheet" href="./css/main.min.css" />
+    <title>bemani-clone</title>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="author" content="jpegzilla">
-  <meta name="robots" content="index, follow">
-  <link rel="stylesheet" href="./css/main.min.css">
-  <title>bemani-clone</title>
-</head>
+  <body>
+    <noscript>
+      this site contains a rhythm game. it cannot be played with javascript
+      disabled.
+    </noscript>
 
-<body>
-  <noscript>
-    this site contains a rhythm game. it cannot be played with javascript disabled.
-  </noscript>
-
-  <div class="mobile-warning">
-    this game is for screens above 1300px in width.
-  </div>
-
-  <section id="preloader-container">
-    <div class="preloader">
-      <div class="preloader-text-top preloader-bar"></div>
-      <div class="preloader-text-bottom preloader-bar"></div>
-      <div id="loading-icon-standard"></div>
+    <div class="mobile-warning">
+      this game is for screens above 1300px in width.
     </div>
-  </section>
 
-  <main id="main">
-    <!-- main contains all layers for every screen. -->
-    <!-- section 0 is for overlays / effects -->
-    <section id="overlays" class="overlays layer-0">
-      <div id="overlaysBrightness" class="overlays-brightness"></div>
-    </section>
-
-    <!-- section 1 contains the modals -->
-    <section id="modals" class="modals layer-1">
-
-      <!-- volume control bars -->
-      <div id="volumeControl" class="modal-child">
-        <div title="master volume">
-          <div id="volumeControl-master"><b id="bar-masterVolume"></b>
-            <p>100</p>
-          </div>
-          <div>mas</div>
-        </div>
-
-        <div title="music volume">
-          <div id="volumeControl-music"><b id="bar-musicVolume"></b>
-            <p>100</p>
-          </div>
-          <div>mus</div>
-        </div>
-
-        <div title="fx volume">
-          <div id="volumeControl-fx"><b id="bar-fxVolume"></b>
-            <p>100</p>
-          </div>
-          <div>fx</div>
-        </div>
-      </div>
-
-      <!-- application settings menu -->
-      <div id="settingsMenu" class="modal-child settings-menu navFocusable">
-
-        <!-- visual settings -->
-        <div class="settings-menu-group">
-          <header>
-            <h2>&rarr; visual settings</h2>
-          </header>
-          <ul>
-            <li>
-              <label for="settings-menu-brightness">brightness</label>
-              <input data-modify="brightness" type="range" id="settings-menu-brightness" class="settings-slider" min="30" max="100" value="100">
-            </li>
-          </ul>
-        </div>
-
-        <!-- audio settings -->
-        <div class="settings-menu-group">
-          <header>
-            <h2>&rarr; audio settings</h2>
-          </header>
-          <ul>
-            <li>
-              <label for="settings-menu-masterVolume">master volume</label>
-              <input data-modify="masterVolume" type="range" id="settings-menu-masterVolume" class="settings-slider" min="0" max="100" value="100">
-            </li>
-            <li>
-              <label for="settings-menu-musicVolume">music volume</label>
-              <input data-modify="musicVolume" type="range" id="settings-menu-musicVolume" class="settings-slider" min="0" max="100" value="100">
-            </li>
-            <li>
-              <label for="settings-menu-fxVolume">fx volume</label>
-              <input data-modify="fxVolume" type="range" id="settings-menu-fxVolume" class="settings-slider" min="0" max="100" value="100">
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- modal background -->
-      <div id="modalsBackground" class="modal-background"></div>
-    </section>
-
-    <!-- section 2 contains the start menu -->
-    <section id="start-menu" class="invisible start-menu layer-2">
-      <div class="start-menu-statusbar">
-        <p>current uptime: <span id="uptime-tracker">0</span></p>
-      </div>
-      <div class="menu-container">
-        <div class="menu-center">
-          <h1 class="main-title">BEMANI CLONE</h1>
-          <div class="main-menu-buttons">
-            <div id="start-game">begin</div>
-            <!-- menu buttons: start game, etc -->
-          </div>
-        </div>
-        <div class="option-buttons">
-          <a id="showSettingsScreen" class="navFocusable" href="#">★ settings</a>
-          <a target="_blank" href="https://github.com/jpegzilla/bemani-clone">github</a>
-          <a target="_blank" href="https://discordapp.com/invite/Ft9rVA6">discord</a>
-          <a target="_blank" href="https://twitter.com/jpegzilla">twitter</a>
-          <!-- option buttons: open options, change settings, log in, etc -->
-        </div>
-      </div>
-
-      <!-- stars -->
-      <div class="stars-container">
-        <div class="starfield">
-          <div class="stars small"></div>
-          <div class="stars medium"></div>
-          <div class="stars large"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- section 4 contains the options selection screen -->
-    <section id="options-select" class="nav-hidden options-select navFocusable layer-4">
-      <div class="options-select-container">
-        hello
-      </div>
-    </section>
-
-    <!-- section 5 contains the song selection screen -->
-    <section id="song-select" class="song-select navFocusable layer-5"></section>
-
-    <!-- section 6 contains the play area -->
-    <section id="play-area" class="play-area navFocusable layer-6"></section>
-
-  </main>
-</body>
-<!-- main javascript -->
-<script type="module" src="./js/main.mjs" charset="utf-8"></script>
-<!-- module check -->
-<script nomodule>
-  console.error('this browser DOES NOT support <script type="module">');
-
-  document.querySelector(".preloader-text-top").textContent = "this browser does not support the modules used by this game.";
-  document.querySelector(".preloader-text-bottom").textContent =
-    "please upgrade to the latest version of firefox or chrome. the game will not load.";
-
-  if (
-    window.confirm(
-      "this game is not supported in this browser.\nplease upgrade to a newer browser, such as the latest version of chrome or firefox."
-    )
-  ) {
-    window.open("https://www.mozilla.org/en-US/firefox/new/", "_blank");
-  }
-</script>
-<!-- service worker -->
-<script type="text/javascript">
-  // load service worker here
-</script>
-
+    <main></main>
+  </body>
+  <!-- main javascript -->
+  <script type="module" src="./js/main.mjs" charset="utf-8"></script>
 </html>

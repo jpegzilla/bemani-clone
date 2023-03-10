@@ -1,19 +1,19 @@
 // css modules
 
 // misc modules
-@import components/defaults
-@import components/fonts
-@import components/vars
-@import components/anim
-@import components/loading_icon
-@import components/stars
-@import components/mixins
-
-// screen modules
-@import components/screens/nomobile
+@use 'components/defaults'
+@use 'components/fonts'
+@use 'components/vars' as v
+@use 'components/anim'
+@use 'components/loading_icon'
+@use 'components/mixins'
 
 body
   isolation: isolate
+  background-color: v.$black
+
+  .mobile-warning
+    display: none
 
   main
     z-index: 1
@@ -24,19 +24,11 @@ body
     position: absolute
     top: 0
     left: 0
-    background-color: black
-    isolation: isolate
 
-    section
-      height: 100%
-      width: 100%
-      position: absolute
-      overflow: hidden
-
-  @media (max-width: $midLarge)
+  @media (max-width: v.$small)
     section,
     main
       display: none
 
     .mobile-warning
-      display: flex
+      display: block

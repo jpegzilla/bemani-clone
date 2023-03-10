@@ -1,6 +1,6 @@
 import keymap from "./keymap.mjs";
 
-export const getPosInElement = e => {
+export const getPosInElement = (e) => {
   let rect = e.target.getBoundingClientRect();
   let height = e.target.offsetHeight;
   let x = e.clientX - rect.left; // x position in element
@@ -15,20 +15,20 @@ export const getPosInElement = e => {
 
 // song file and pattern-related utilities
 
-export const getSongData = id => {
+export const getSongData = (id) => {
   // store the song data in global storage
-  const getPattern = pattern => {
+  const getPattern = (pattern) => {
     return pattern;
   };
 
-  const getMusic = pattern => {
+  const getMusic = (pattern) => {
     return music;
   };
 
-  const getBackground = pattern => {
+  const getBackground = (pattern) => {
     return bg;
   };
-  const getVideo = pattern => {
+  const getVideo = (pattern) => {
     return video;
   };
 };
@@ -50,7 +50,7 @@ class Stopwatch {
   }
 
   stop() {
-    this.stopTime = new Date().getTime();
+    this.stopTime = new Date().getTime(); // use performance.now
     let elapsed = this.stopTime - this.startTime;
     let hour = 1000 * 60 * 60;
     let min = 1000 * 60;
@@ -69,7 +69,7 @@ class Stopwatch {
       hours: h,
       minutes: m,
       seconds: s,
-      milliseconds: ms
+      milliseconds: ms,
     };
   }
 
@@ -89,14 +89,14 @@ let defaultKeyBinds = {
     1: "a",
     2: "s",
     3: "k",
-    4: "l"
+    4: "l",
   },
   "5k": {
     1: "a",
     2: "s",
     3: "space",
     4: "j",
-    5: "k"
+    5: "k",
   },
   "6k": {
     1: "a",
@@ -104,7 +104,7 @@ let defaultKeyBinds = {
     3: "d",
     4: "j",
     5: "k",
-    6: "l"
+    6: "l",
   },
   "7k": {
     1: "a",
@@ -113,7 +113,7 @@ let defaultKeyBinds = {
     4: "space",
     5: "j",
     6: "k",
-    7: "l"
+    7: "l",
   },
   "8k": {
     1: "a",
@@ -123,7 +123,7 @@ let defaultKeyBinds = {
     5: "h",
     6: "j",
     7: "k",
-    8: "l"
+    8: "l",
   },
   "9k": {
     1: "a",
@@ -134,8 +134,8 @@ let defaultKeyBinds = {
     6: "h",
     7: "j",
     8: "k",
-    9: "l"
-  }
+    9: "l",
+  },
 };
 
 // set up loading screen
@@ -146,7 +146,7 @@ let linecount = 58;
 
 // choose random line numbers. linecount is the number of lines in the text file
 export const runLoadingFlavorText = () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const randLine1 = () => {
       let rt = Math.round(Math.random() * 500);
       let interval = setInterval(() => {
@@ -194,8 +194,8 @@ const loadingTextBottom = document.querySelector(".preloader-text-bottom");
 // add a line of text to the loading text area.
 const addLoadingState = () => {
   fetch(file)
-    .then(t => t.text())
-    .then(x => {
+    .then((t) => t.text())
+    .then((x) => {
       let r1 = utils.randomInt(0, 58);
       let r2 = utils.randomInt(60, 71);
       let line1 = x.split("\n")[r1];
@@ -224,8 +224,9 @@ const toSpans = (text, element) => {
       element.appendChild(span);
       a.push(span);
     } else {
-      span.style.cssText = `transition: translate 0.3s, opacity 0.3s;transition-delay: ${i *
-        80}ms`;
+      span.style.cssText = `transition: translate 0.3s, opacity 0.3s;transition-delay: ${
+        i * 80
+      }ms`;
       let cont = document.createTextNode(letters[i]);
       span.appendChild(cont);
       element.appendChild(span);
@@ -238,7 +239,7 @@ const toSpans = (text, element) => {
 // buffer class for loading assets
 
 // find all children of an element with a specific id
-export const childrenArray = id =>
+export const childrenArray = (id) =>
   Array.from(document.getElementById(id).children);
 
 // find all children of an element with a specific id that match an html tag
@@ -246,17 +247,17 @@ export const typedChildrenArray = (id, type) =>
   Array.from(document.getElementById(id).getElementsByTagName(type));
 
 // find all elements of a specific html tag
-export const typedElementArray = type =>
+export const typedElementArray = (type) =>
   Array.from(document.getElementsByTagName(type));
 
 // wrapper for getelementbyid
-export const did = id => document.getElementById(id);
+export const did = (id) => document.getElementById(id);
 
 export const utils = {
   defaultKeyBinds,
-  getKeyCodeFromLetter: letter => letter.toUpperCase().charCodeAt(0),
+  getKeyCodeFromLetter: (letter) => letter.toUpperCase().charCodeAt(0),
   randomInt: (min, max) => Math.round(Math.random() * (max - min + 1)) + min,
   Stopwatch,
   keymap,
-  toSpans
+  toSpans,
 };

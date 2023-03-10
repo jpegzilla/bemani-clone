@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "https://github.com/jpegzilla/bemani-clone.git",
   "author": "jpegzilla <eris@jpegzilla.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "swm": "npx sass --watch --style=compressed ./css/main.sass:./css/main.min.css",
+    "format": "prettier --write ."
+  }
 }
